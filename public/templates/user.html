@@ -1,2 +1,3 @@
-<div class="user_number">{{ info.user_count }}</div>
+<div ng-show="info.active" class="user_number present">{{ info.user_count }}</div>
+<div ng-show="!info.active" class="user_number offline">{{ info.user_count }}</div>
 <div class="username">{{ info.username }}</div>

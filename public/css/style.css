@@ -228,6 +228,10 @@ header .about a {
   margin-right: 12px;
   display: inline-block;
 }
+.user .user_number.offline {
+  background-color: white;
+  color: #0376ff;
+}
 .user .username {
   display: inline-block;
   width: 60px;
