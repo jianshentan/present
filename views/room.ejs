@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= room %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/media/font-awesome-4.3.0/css/font-awesome.min.css' />
+  </head>
+  <body ng-app="present" ng-controller="MainController">
+
+    <!-- main -->
+    <div class="main">
+      <header>
+        <div class="user_profile">
+          <div class="user_number">{{ user_count }}</div>
+          <div class="user_info">
+            <div class="username">{{ username }}</div>
+            <div class="user_duration"></div>
+          </div>
+        </div>
+        <div class="about">
+          <a href="">about present</a>
+        </div>
+      </header>
+      <div class="center">
+        <div class="data_container">
+          <div class="data_stats">
+            <div class="left">{{ active_users }}</div>
+            <div class="right">
+              <div>/ {{ total_users }}</div><div>people</div><div>present</div>
+            </div>
+          </div>
+          <div class="room_name">#{{ room_id }}</div>
+        </div>
+        <div class="share_container">
+          <% include share %>
+        </div>
+      </div>
+    </div>
+
+    <!-- User list -->
+    <div class="users" >
+      <div class="users_container">
+        <div class="user" ng-repeat="user in user_list">
+          <user info="user"></user>
+        </div>
+      </div>
+    </div>
+
+    <!-- enter modal -->
+    <div class="enter_modal">
+      <div class="enter_form">
+        <div class="enter_text_container">
+          <div class="enter_text">
+            <span class="default">Enter a username so your friends know who you are</span>
+            <span class="valid">Looks good :) <br> Hit <b>enter</b> to continue</span>
+            <span class="taken">This username has been taken :( Try another one</span>
+            <span class="invalid">The username you entered is invalid</span>
+          </div>
+        </div>
+        <input type="text" class="enter_username" placeholder="username"><br>
+      </div>
+    </div>
+
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script> var roomId = '<%= room %>'; </script>
+    <script src="/js/room.js"></script>
+  </body>
+</html>
