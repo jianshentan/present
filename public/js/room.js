@@ -1,3 +1,9 @@
+/* GLOBAL */
+
+var username = "";
+var roomId = roomId; // roomId is declared in the html
+window.history.pushState("", "", '/'+roomId);
+
 /* MAIN */
 
 var app = angular.module( "present", [] );
@@ -6,7 +12,7 @@ var mainController = $( ".main" ).scope();
 app.controller('MainController',[ '$scope', function($scope) {
 
   $scope.active_users = 0;
-  $scope.total_users = 3292;
+  $scope.total_users = 0;
 
   $scope.init = function( username, roomId ) {
     $scope.username = username;
@@ -77,10 +83,6 @@ app.filter('reverse', function() {
 });
 
 /* ENTER */
-
-var username = "";
-window.history.pushState("", "", '/'+roomId);
-
 var typingTimer;                
 var doneTypingInterval = 750;  
 var inputIsValid = false;
@@ -168,22 +170,8 @@ function openConnection() {
 
 socket.on( 'user joined', function( reply ) {
   $( "body" ).scope().users( reply );
-  /*
-  var usernames = "";
-  reply.forEach( function( item, i ) {
-    usernames += item.username + "|" + item.active + ", "
-  });
-  $( ".user_count" ).html( usernames );
-  */
 });
 
 socket.on( 'user left', function( reply ) {
   $( "body" ).scope().users( reply );
-  /*
-  var usernames = "";
-  reply.forEach( function( item, i ) {
-    usernames += item.username + "|" + item.active + ", "
-  });
-  $( ".user_count" ).html( usernames );
-  */
 });

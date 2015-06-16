@@ -18,7 +18,7 @@ key              | type    | members   | represents:
 'users'          | SET     | <user_id> | all users 
 'user<user_id>'  | HASH    | user data | user data
 
-* room_id is the name of the room
+* room_id is the name of the room (they all begin '@')
 * user_id = <roomId>:<username>
 * rooms and room<room_id> are sets because their members must
   be unique

@@ -7,7 +7,7 @@ module.exports = function( app ) {
   });
 
   app.get( '/:room', function( req, res ) {
-    var roomId = req.params.room;
+    var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
@@ -19,7 +19,7 @@ module.exports = function( app ) {
   });
 
   app.get( '/add/:room', function( req, res ) {
-    var roomId = req.params.room;
+    var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
