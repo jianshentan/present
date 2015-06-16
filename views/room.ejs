@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="about">
-          <a href="">about present</a>
+          <a href="/">about present</a>
         </div>
       </header>
       <div class="center">
@@ -40,7 +40,7 @@
     <!-- User list -->
     <div class="users" >
       <div class="users_container">
-        <div class="user" ng-repeat="user in user_list">
+        <div class="user" ng-repeat="user in user_list | reverse">
           <user info="user"></user>
         </div>
       </div>

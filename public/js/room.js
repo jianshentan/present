@@ -70,6 +70,12 @@ app.directive( 'user', function() {
   }; 
 });
 
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
 /* ENTER */
 
 var username = "";

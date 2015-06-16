@@ -229,11 +229,14 @@ header .about a {
   display: inline-block;
 }
 .user .user_number.offline {
-  background-color: white;
-  color: #0376ff;
+  background-color: rgba(255,255,255,0.5);
+  color: white;
 }
 .user .username {
   display: inline-block;
   width: 60px;
+}
+.user .username.offline {
+  text-decoration: line-through;
 }
 
