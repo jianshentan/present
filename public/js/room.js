@@ -37,6 +37,8 @@ app.controller('MainController',[ '$scope', function($scope) {
 
       $( '.user_duration' ).html( duration );
     }, 1000 );
+
+    setUsersContainerWidth(); // user tiles css hack
   };
 
   $scope.users = function( users ) {
@@ -77,12 +79,30 @@ app.directive( 'user', function() {
 });
 
 app.filter('reverse', function() {
-  return function(items) {
-    return items.slice().reverse();
+  return function( items ) {
+    if( items ) return items.slice().reverse();
   };
 });
 
+// fix user display alignment
+$( document ).ready( function(){
+  setUsersContainerWidth();
+});
+
+$( window ).resize( function(){
+  setUsersContainerWidth();
+});
+
+function setUsersContainerWidth(){
+  $( '.users_container' ).css( 'width', 'auto' );
+  var windowWidth = $( document ).width();
+  var blockWidth = $( '.user' ).outerWidth( true );
+  var maxBoxPerRow = Math.floor( windowWidth / blockWidth );
+  $( '.users_container' ).width( maxBoxPerRow * blockWidth );
+}
+
 /* ENTER */
+
 var typingTimer;                
 var doneTypingInterval = 750;  
 var inputIsValid = false;
@@ -122,33 +142,31 @@ $( '.enter_username' ).keyup( function( e ){
         showText( 'invalid' );
       }
     }, doneTypingInterval);
-    
   }
 });
 
-function isValidUsername( name ) {
-  if( name.length > 1 && name.length <= 15 ) {
-    return /^[0-9a-zA-Z_.-]+$/.test( name ); 
-  } else {
-    return false;
-  }
-};
-
 function showText( option ) {
-  $( ".enter_text > span" ).fadeOut( 'fast', function() {
+  $( ".enter_text > span" ).fadeOut( '100', function() {
     setTimeout( function() {
+      var input = $( ".enter_username" );
+      input.removeClass( "valid" );
+      input.removeClass( "invalid" );
+      $( ".enter_username" ).removeClass( "valid" );
       switch( option ) {
         case 'valid':
-          $( ".enter_text > .valid" ).fadeIn( 'fast' );
+          $( ".enter_text > .valid" ).fadeIn( '100' );
+          input.addClass( "valid" );
           break;
         case 'invalid':
-          $( ".enter_text > .invalid" ).fadeIn( 'fast' );
+          $( ".enter_text > .invalid" ).fadeIn( '100' );
+          input.addClass( "invalid" );
           break;
         case 'taken':
-          $( ".enter_text > .taken" ).fadeIn( 'fast' );
+          $( ".enter_text > .taken" ).fadeIn( '100' );
+          input.addClass( "invalid" );
           break;
         default:
-          $( ".enter_text > .default" ).fadeIn( 'fast' );
+          $( ".enter_text > .default" ).fadeIn( '100' );
           break;
       }
     }, 500 );

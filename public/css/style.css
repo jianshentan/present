@@ -20,6 +20,7 @@ body {
   font: 14px "Muli Light", Helvetica, Arial, sans-serif;
   padding: 0px;
   margin: 0px;
+  min-width: 640px;
 }
 input:focus{
   outline: 0;
@@ -81,18 +82,36 @@ input[type='text'] {
   border-radius: 4px;
   -webkit-border-radius:4px;
 }
+.enter_username.valid {
+  height: 40px;
+  border: 2px solid #03dd03;
+}
+.enter_username.invalid {
+  border: 2px solid #e54823;
+  height: 40px;
+}
 .enter_submit {
   margin-top: 12px;
+}
+.enter_learn_more {
+  color: white;
+  font-size: 1.2em;
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* MAIN */
 .main {
   position: relative;
-  height: 95vh;
+  height: 85vh;
 }
 header {
   height: 80px;
   width: 100vw;
+  min-width: 640px;
   color: blue;
   position: relative;
 }
@@ -148,26 +167,35 @@ header .about a {
   color: #0376ff;
 }
 .data_container {
-  border-bottom: 1px solid #0376ff; 
   padding-bottom: 24px;
 }
 .data_stats .left {
-  font-size: 9.0em;
+  font-size: 13.0em;
   line-height: 1.0em;
   display: inline-block;
   margin-right: 20px;
 }
 .data_stats .right {
-  font-size: 1.6em;
+  font-size: 2.3em;
   line-height: 1.5em;
   display: inline-block;
   text-align: left;
   vertical-align: top;
   margin-top: 18px;
 }
+.data_stats .right .total_users {
+  font-family: "Muli";
+}
 .room_name {
   font-size: 3.0em;
   font-family: "Muli";
+}
+.share_container {
+  border: 2px solid #0376ff;
+  padding-bottom: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
 }
 .share_container .a {
 }
@@ -183,24 +211,29 @@ header .about a {
   margin: 16px 12px;
 }
 .share_project_social .share_project_social_icon {
-  width: 60px;
-  height: 60px;
-  color: white;
-  background-color: #0376ff;
-  font-size: 1.8em;
+  width: 50px;
+  height: 50px;
+  color: #0376ff;;
+  background-color: white;
+  font-size: 2.2em;
   text-align: center;
-  line-height: 60px;
+  line-height: 50px;
 }
 .share_project_social .share_project_social_label {
   font-size: 1.0em;
   margin-top: 12px;
   color: #0376ff;
+  font-family: "Muli";
 }
 .share_project_link {
-  font-size: 2.0em;
+  font-size: 1.8em;
   font-weight: 700;
   text-align: center;
   margin-top: 12px;
+}
+.share_project_link_room {
+  font-family: "Muli";
+  border-bottom: 2px solid #0376ff;
 }
 
 /* USER LIST */
@@ -208,15 +241,18 @@ header .about a {
   background-color: #0376ff;
   color: white;
   padding: 20px;
+  display: -webkit-box;
 }
 .users_container {
   max-width: 1050px;
   margin: 0 auto;
 }
 .user {
-  display: inline-block;
+  display: block;
   margin: 20px;
   width: 170px;
+  height: 44px;
+  float: left;
 }
 .user .user_number {
   width: 40px;
