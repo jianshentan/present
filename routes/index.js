@@ -13,8 +13,16 @@ module.exports = function( app ) {
         if( bool ) {
           res.render( 'room', { room: roomId } );
         } else {
-          res.render( 'index', { room: roomId } );
+          res.render( '404', { room: roomId } );
         }
+      });
+  });
+
+  app.get( '/exist/:room', function( req, res ) {
+    var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
+    redis.isExistingRoom( roomId,
+      function( bool ) {
+        res.send( bool );
       });
   });
 

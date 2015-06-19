@@ -140,6 +140,10 @@ exports.addRoom = function( roomId, callback ) {
     });
 };
 
+/* trending is defined simply by the number of online users */
+exports.getTrendingRooms = function( num, callback ) {
+};
+
 /* returns total minutes spent in a room collectively
    TODO: untested */
 exports.totalMinutes = function( room, callback ) {

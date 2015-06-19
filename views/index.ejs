@@ -3,34 +3,42 @@
   <head>
     <link rel='stylesheet' href='/css/style.css' />
   </head>
-  <body>
-    <h1> present :) </h1>
-
-    <% if( typeof room == 'undefined') { %>
-    <input class="room" type="text" placeholder="Enter Room Name" >
-    <% } else { %>
-    <input class="room" type="text" placeholder="" value='<%= room %>'>
-    <% } %>
-
-    <br>
-    <input type="submit" class="create_room" value="Create Room">
-
-    <div class="enter_form">
-      <div class="enter_text_container">
-        <div class="enter_text">
-          <span class="default">Enter a username so your friends know who you are</span>
+  <body ng-app="present" ng-controller="MainController">
+  
+    <div class="create_room_form">
+      <div class="create_room_container">
+        <div class="create_room_text">
+          <span class="default">Create your online space </span>
           <span class="valid">Looks good :) <br> Hit <b>enter</b> to continue</span>
-          <span class="taken">This username has been taken :( Try another one</span>
-          <span class="invalid">The username you entered is invalid</span>
+          <span class="taken">This name has been taken :( Try another one</span>
+          <span class="invalid">Just letters and numbers please. Try again.</span>
         </div>
       </div>
-      <input type="text" class="enter_username" placeholder="username"><br>
+      <div class="at_symbol">@</div>
+      <input type="text" class="create_room_input" placeholder="neverland"><br>
     </div>
-    
+
+    <div class="trending" >
+      <div class="trending_label">Trending spaces...</div>
+      <div class="trending_container">
+        <div class="trending_room">1. @trendingRoom</div>
+        <div class="trending_room">2. @yellowumbrella</div>
+        <div class="trending_room">3. @foreverland</div>
+        <div class="trending_room">4. @raldk</div>
+        <div class="trending_room">5. @dav</div>
+        <div class="trending_room">6. @whitehouse021</div>
+        <div class="trending_room">7. @nevernerner</div>
+        <div class="trending_room">8. @sotppit</div>
+        <div class="trending_room">9. @trendingRoom</div>
+      </div>
+    </div>
+  
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/angular.min.js"></script>
     <script src="/js/util.js"></script>
-    <script> var roomId = '<%= room %>'; </script>
+    <% if( typeof room != 'undefined') { %>
+      <script> var roomId = '<%= room %>'; </script>
+    <% } %>
     <script src="/js/index.js"></script>
   </body>
 </html>

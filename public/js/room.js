@@ -14,7 +14,7 @@ app.controller('MainController',[ '$scope', function($scope) {
   $scope.active_users = 0;
   $scope.total_users = 0;
 
-  $scope.init = function( username, roomId ) {
+  $scope.init = function( username ) {
     $scope.username = username;
     $scope.room_id = roomId;
     $scope.$apply();
@@ -84,7 +84,7 @@ app.filter('reverse', function() {
   };
 });
 
-// fix user display alignment
+// fix users display alignment
 $( document ).ready( function(){
   setUsersContainerWidth();
 });
@@ -99,59 +99,28 @@ function setUsersContainerWidth(){
   var blockWidth = $( '.user' ).outerWidth( true );
   var maxBoxPerRow = Math.floor( windowWidth / blockWidth );
   $( '.users_container' ).width( maxBoxPerRow * blockWidth );
-}
+};
 
 /* ENTER */
 
-var typingTimer;                
-var doneTypingInterval = 750;  
-var inputIsValid = false;
+startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
 
-//on keyup, start the countdown
-$( '.enter_username' ).keyup( function( e ){
-  clearTimeout( typingTimer );
+function enter( input ) {
+  username = input;
+  openConnection();
+  $( ".enter_modal" ).fadeOut( function() {
+    $( ".main" ).fadeIn('fast');
+      // start angular controller
+      $( "body" ).scope().init( username );
+  });
+};
 
-  if( e.keyCode == 13 || e.which == 13 ) {
-    if( inputIsValid ) {
-      openConnection();
-      $( ".enter_modal" ).fadeOut( function() {
-        $( ".main" ).fadeIn('fast');
-          // start angular controller
-          $( "body" ).scope().init( username, roomId );
-      });
-    }
-  }
-
-  if( $( this ).val && $( this ).val().length > 2 ) {
-    desiredUsername = $( this ).val();
-    typingTimer = setTimeout( function() {
-      if( isValidUsername( desiredUsername ) ) {
-        $.get( '/'+roomId+'/'+desiredUsername, function( valid ) {
-          var feedbackText = $( ".enter_text" );
-          if( valid ) {
-            inputIsValid = true;
-            showText( 'valid' );
-            username = desiredUsername;
-          } else {
-            inputIsValid = false;
-            showText( 'taken' );
-          }
-        });
-      } else {
-        inputIsValid = false;
-        showText( 'invalid' );
-      }
-    }, doneTypingInterval);
-  }
-});
-
-function showText( option ) {
+function feedback( option ) {
   $( ".enter_text > span" ).fadeOut( '100', function() {
     setTimeout( function() {
       var input = $( ".enter_username" );
       input.removeClass( "valid" );
       input.removeClass( "invalid" );
-      $( ".enter_username" ).removeClass( "valid" );
       switch( option ) {
         case 'valid':
           $( ".enter_text > .valid" ).fadeIn( '100' );
@@ -172,7 +141,6 @@ function showText( option ) {
     }, 500 );
   });
 };
-
 
 /* SOCKET */
 
