@@ -11,13 +11,15 @@ redisClient.flushall(); // dev only
 
 REDIS client structure
 
-key              | type    | members   | represents:
+key              | type      | members    | represents:
 --------------------------------------------------------------
-'rooms'          | SET     | <room_id> | all room
-'room<room_id>'  | SET     | <user_id> | all users in room
-'users'          | SET     | <user_id> | all users 
-'user<user_id>'  | HASH    | user data | user data
+'rooms'          | SET       | <room_id>  | all room
+'room<room_id>'  | SET       | <user_id>  | all users in room
+'users'          | SET       | <user_id>  | all users 
+'user<user_id>'  | HASH      | user data  | user data
+'trending'       | SORTEDSET | key: <room_id>, val: active_users 
 
+* TODO: trending + rooms might be redundant 
 * room_id is the name of the room (they all begin '@')
 * user_id = <roomId>:<username>
 * rooms and room<room_id> are sets because their members must
@@ -25,12 +27,13 @@ key              | type    | members   | represents:
 
 =========================================================== */
 
-exports.addUserData = function( userId, username, callback ) {
+exports.addUserData = function( userId, username, roomId, callback ) {
   redisClient.hmset( keyify( 'user', userId ), 
     'username', username, 
     'joined_on', new Date().getTime(),
     'left_on', 'false',
     'active', 'true',
+    'room_id', roomId,
     function( err, res ) {
       if( err ) throw err;
       callback();
@@ -38,11 +41,26 @@ exports.addUserData = function( userId, username, callback ) {
 };
 
 exports.addUserToRoom = function( userId, roomId, callback ) {
-  redisClient.sadd( keyify( 'room', roomId ), userId,
-    function( err, res ) {
-      if( err ) throw err;
+  async.parallel([
+    function( cb ) {
+      redisClient.sadd( keyify( 'room', roomId ), userId,
+        function( err, res ) {
+          if( err ) throw err;
+          cb( null, true );
+        });
+    },
+    function( cb ) {
+      redisClient.zincrby( 'trending', 1, roomId,
+        function( err, res ) {
+          if( err ) throw err;
+          cb( null, true );
+        });
+    }
+  ], function( err, results ) {
+    if( !err ) {
       callback();
-    });
+    }
+  });
 };
 
 exports.addUser = function( userId, callback ) {
@@ -54,13 +72,33 @@ exports.addUser = function( userId, callback ) {
 };
 
 exports.deactivateUser = function( userId, callback ) {
-  redisClient.hmset( keyify( 'user', userId ), 
-    'active', 'false',
-    'left_on', new Date().getTime(),
-    function( err, res ) {
-      if( err ) throw err;
+  async.parallel([
+    function( cb ) {
+      redisClient.hmset( keyify( 'user', userId ), 
+        'active', 'false',
+        'left_on', new Date().getTime(),
+        function( err, res ) {
+          if( err ) throw err;
+          cb( null, true );
+        });
+    }, 
+    function( cb ) {
+      redisClient.hget( keyify( 'user', userId ), 'room_id',
+        function( err, res ) {
+          if( err ) throw err;
+          var roomId = res;
+          redisClient.zincrby( 'trending', -1, roomId, 
+            function( err, res ) {
+              if( err ) throw err;
+              cb( null, true );
+            });
+        });
+    }
+  ], function( err, results ) {
+    if( !err ) 
       callback();
-    });
+  });
+  
 };
 
 exports.getUserData = function( userId, callback ) {
@@ -133,15 +171,35 @@ exports.isExistingRoom = function( roomId, callback ) {
 };
 
 exports.addRoom = function( roomId, callback ) {
-  redisClient.sadd( 'rooms', roomId,
-    function( err, res ) {
-      if( err ) throw err;
+  async.parallel([
+    function( cb ) {
+      redisClient.sadd( 'rooms', roomId,
+        function( err, res ) {
+          if( err ) throw err;
+          cb( null, true );
+        });
+    }, 
+    function( cb ) {
+      redisClient.zadd( 'trending', 0, roomId,
+        function( err, res ) {
+          if( err ) throw err;
+          cb( null, true );  
+        });
+    }
+  ], function( err, results ) {
+    if( !err ) {
       callback( true );
-    });
+    }
+  });
 };
 
 /* trending is defined simply by the number of online users */
 exports.getTrendingRooms = function( num, callback ) {
+  redisClient.zrevrangebyscore( 'trending', '+inf', 0, 'limit', 0, num,
+    function( err, res ) {
+      if( err ) throw err;
+      callback( res );
+    });
 };
 
 /* returns total minutes spent in a room collectively

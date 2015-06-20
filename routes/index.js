@@ -6,6 +6,12 @@ module.exports = function( app ) {
     res.render( 'index' );
   });
 
+  app.get( '/trending', function( req, res ) {
+    redis.getTrendingRooms( req.query.number, function( data ) {
+      res.send( data );
+    });
+  });
+
   app.get( '/:room', function( req, res ) {
     var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
     redis.isExistingRoom( roomId, 
@@ -18,11 +24,11 @@ module.exports = function( app ) {
       });
   });
 
-  app.get( '/exist/:room', function( req, res ) {
+  app.get( '/valid/:room', function( req, res ) {
     var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
     redis.isExistingRoom( roomId,
       function( bool ) {
-        res.send( bool );
+        res.send( !bool );
       });
   });
 
@@ -46,6 +52,8 @@ module.exports = function( app ) {
         res.send( bool );
       });
   });
+
+  
 
   /* not using this feature
   app.get( '/time/:room', function( req, res ) {

@@ -15,7 +15,7 @@ exports.start = function( io ) {
 
       async.parallel([
         function( callback ) {
-          redisClient.addUserData( userId, data.user.username, function() {
+          redisClient.addUserData( userId, data.user.username, roomId, function() {
             callback( null, true );
           });
         },
