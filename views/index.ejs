@@ -2,20 +2,24 @@
 <html>
   <head>
     <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/index.css' />
+    <link rel='stylesheet' href='/media/font-awesome-4.3.0/css/font-awesome.min.css' />
   </head>
   <body ng-app="present" ng-controller="MainController">
   
-    <div class="create_room_form">
-      <div class="create_room_container">
-        <div class="create_room_text">
-          <span class="default">Create your online space </span>
-          <span class="valid">Looks good :) <br> Hit <b>enter</b> to continue</span>
-          <span class="taken">This name has been taken :( Try another one</span>
-          <span class="invalid">Just letters and numbers please. Try again.</span>
+    <div class="create_room">
+      <div class="create_room_form">
+        <div class="create_room_container">
+          <div class="create_room_text">
+            <span class="default">Create your online space </span>
+            <span class="valid">Looks good :) <br> Hit <b>enter</b> to continue</span>
+            <span class="taken">This name has been taken :( Try another one</span>
+            <span class="invalid">Just letters and numbers please. Try again.</span>
+          </div>
         </div>
+        <div class="at_symbol">@</div>
+        <input type="text" class="create_room_input" placeholder="neverland"><br>
       </div>
-      <div class="at_symbol">@</div>
-      <input type="text" class="create_room_input" placeholder="neverland"><br>
     </div>
 
     <div class="trending" >

@@ -5,17 +5,22 @@ var mainController = $( ".main" ).scope();
 
 app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
 
-  $http.get( '/trending?number=10' )
+  $http.get( '/trending?number=12' )
     .success( function( data ) {
-      var trendingRooms = [];
-      for( var i in data ) {
-        var room = {
-          trending_count: parseInt(i)+1,
-          room_id: data[i]
+      if( data.length < 6 ) {
+        $( ".trending" ).hide();
+        $( ".create_room" ).addClass( "full_page" );
+      } else {
+        var trendingRooms = [];
+        for( var i in data ) {
+          var room = {
+            trending_count: parseInt(i)+1,
+            room_id: data[i]
+          }
+          trendingRooms.push( room );
         }
-        trendingRooms.push( room );
+        $scope.trending_rooms = trendingRooms;
       }
-      $scope.trending_rooms = trendingRooms;
     })
     .error( function( data ) {
       console.log( data );

@@ -47,43 +47,76 @@ exports.start = function( io ) {
       console.log( "user '" + userId + "' entered room: " + roomId ) ;
       socket.join( roomId );
 
-      async.parallel([
-        function( callback ) {
-          redisClient.getUserData( userId, function( user ) {
-            callback( null, user );
-          });
-        },
-        function( callback ) {
-          redisClient.addUserData( userId, data.user.username, roomId, function() {
-            callback( null, true );
-          });
-        },
-        function( callback ) {
-          redisClient.addUserToRoom( userId, roomId, function() {
-            callback( null, true );
-          });
-        },
-        function( callback ) {
-          redisClient.addUser( userId, function() {
-            callback( null, true );
-          });
-        },
-
-      ], function( err, results ) {
-        if( err ) throw err;
-
-        var user = results[0];
-        if( user ) { 
-          redisClient.getUsersInRoom( roomId, function( users ) {
-            io.to( roomId ).emit( 'user joined',
-              { userlist: users, user: user } );
-          });
+      redisClient.isExistingUser( userId, function( bool ) {
+        if( bool ) {
+          existingUser( userId, roomId );
+        } else {
+          addNewUser( userId, roomId, data );
         }
       });
 
+      function existingUser( userId, roomId ) {
+        async.parallel([
+          function( callback ) {
+            redisClient.getUserData( userId, function( user ) {
+              callback( null, user );
+            });
+          },
+          function( callback ) {
+            redisClient.activateUser( userId, function() {
+              callback( null, true );  
+            });
+          }
+        ], function( err, results ) {
+          if( err ) throw err;
+
+          var user = results[0];
+          if( user ) {
+            redisClient.getUsersInRoom( roomId, function( users ) {
+              io.to( roomId ).emit( 'user joined',
+                { userlist: users, user: user } );
+            });
+          }
+          
+        });
+      };
+
+      function addNewUser( userId, roomId, data ) {
+        async.parallel([
+          function( callback ) {
+            redisClient.addUserData( userId, data.user.username, roomId,
+              function() {
+                callback( null, true );
+              });
+          },
+          function( callback ) {
+            redisClient.addUserToRoom( userId, roomId, function() {
+              callback( null, true );
+            });
+          },
+          function( callback ) {
+            redisClient.addUser( userId, function() {
+              callback( null, true );
+            });
+          },
+
+        ], function( err, results ) {
+          if( err ) throw err;
+
+          redisClient.getUserData( userId, function( user ) {
+            redisClient.getUsersInRoom( roomId, function( users ) {
+              io.to( roomId ).emit( 'user joined',
+                { userlist: users, user: user } );
+            });
+          });
+        });
+      }
+
+      /*
       redisClient.totalMinutes( roomId, function( time ) {
         io.to( roomId ).emit( 'time', time );
       });
+      */
 
     });
 

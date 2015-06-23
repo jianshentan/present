@@ -8,6 +8,7 @@ module.exports = function( app ) {
 
   app.get( '/trending', function( req, res ) {
     redis.getTrendingRooms( req.query.number, function( data ) {
+      console.log( data );
       res.send( data );
     });
   });

@@ -3,6 +3,7 @@
 var PERSISTENT_USER = true;
 var username = "";
 var roomId = roomId; // roomId is declared in the html
+var totalSeconds = 0;
 window.history.pushState("", "", '/'+roomId);
 
 /* MAIN */
@@ -17,14 +18,15 @@ app.controller('MainController',[ '$scope', function($scope) {
 
   // check if user is already logged in on current browser
   if( PERSISTENT_USER ) {
-    if( !localStorage.getItem( 'room' ) ) {
+    if( !localStorage.getItem( roomId ) ) {
       startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
     } else {
-      var obj = JSON.parse( localStorage.getItem( 'room' ) );
+      var obj = JSON.parse( localStorage.getItem( roomId ) );
       if( obj.room_id !== roomId ) {
         startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
       } else {
-        enter( obj.username );
+        username = obj.username;
+        enter( username );
       }
     }
   } else {
@@ -37,14 +39,13 @@ app.controller('MainController',[ '$scope', function($scope) {
         room_id: roomId,
         username: username
       }
-      localStorage.setItem( 'room', JSON.stringify( localStorageObj ) );
+      localStorage.setItem( roomId, JSON.stringify( localStorageObj ) );
     }
 
     $scope.username = username;
     $scope.room_id = roomId;
     $scope.$apply();
 
-    var totalSeconds = 0;
     setInterval( function() {
       totalSeconds += 1;
 
@@ -128,10 +129,9 @@ function setUsersContainerWidth(){
 
 function enter( input ) {
   username = input;
-  openConnection();
+  openConnection( username );
   $( ".enter_modal" ).fadeOut( function() {
     $( ".main" ).fadeIn('fast');
-      // start angular controller
       $( "body" ).scope().init( username );
   });
 };
@@ -167,7 +167,7 @@ function feedback( option ) {
 
 var socket = io();
 
-function openConnection() {
+function openConnection( username ) {
   var user = {
     id: roomId+":"+username,
     username: username
@@ -182,15 +182,12 @@ socket.on( 'user joined', function( reply ) {
 socket.on( 'user left', function( reply ) {
   $( "body" ).scope().users( reply.userlist );
   if( PERSISTENT_USER ) {
-    console.log( reply.user.username );
-    console.log( typeof reply.user.username );
-    console.log( username );
-    console.log( typeof username );
     if( reply.user.username === username ) {
       $( '.exit_background' ).fadeIn();
-      $( '.exit_button' ).click( function() {
-        window.location.href = "/";
-      });
+      $( '.exit_button, .exit_background, .exit_modal' )
+        .click( function() {
+          window.location.href = "/";
+        });
     }
   }
 });

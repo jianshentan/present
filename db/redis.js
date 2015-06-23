@@ -5,7 +5,7 @@ var redisClient = redis.createClient(); // can specify ( post, host )
 redisClient.on( 'connect', function() {
   console.log( "redis db connected" );
 });
-redisClient.flushall(); // dev only
+// redisClient.flushall(); // dev only
 
 /* ===========================================================
 
@@ -69,6 +69,35 @@ exports.addUser = function( userId, callback ) {
       if( err ) throw err;
       callback();
     });
+};
+
+exports.activateUser = function( userId, callback ) {
+  async.parallel([
+    function( cb ) {
+      redisClient.hmset( keyify( 'user', userId ),
+        'active', 'true',
+        'left_on', 'false',
+        function( err, res ) {
+          if( err ) throw err;
+          cb( null, true );
+        });
+    },
+    function( cb ) {
+      redisClient.hget( keyify( 'user', userId ), 'room_id',
+        function( err, res ) {
+          if( err ) throw err;
+          var roomId = res;
+          redisClient.zincrby( 'trending', 1, roomId, 
+            function( err, res ) {
+              if( err ) throw err;
+              cb( null, true );
+            });
+        });
+    }
+  ], function( err, results ) {
+    if( !err )
+      callback(); 
+  });
 };
 
 exports.deactivateUser = function( userId, callback ) {
@@ -152,6 +181,18 @@ exports.isValidUsername = function( username, roomId, callback ) {
     });
 };
 
+exports.isExistingUser = function( userId, callback ) {
+  redisClient.sismember( 'users', userId,
+    function( err, res ) {
+      if( err ) throw err;
+      if( res == 0 ) { // is not member
+        callback( false );
+      } else {
+        callback( true );
+      }
+    });
+};
+
 exports.isExistingRoom = function( roomId, callback ) {
   redisClient.sismember( 'rooms', roomId,
     function( err, res ) {
@@ -187,7 +228,6 @@ exports.addRoom = function( roomId, callback ) {
   });
 };
 
-/* trending is defined simply by the number of online users */
 exports.getTrendingRooms = function( num, callback ) {
   redisClient.zrevrangebyscore( 'trending', '+inf', 0, 'limit', 0, num,
     function( err, res ) {
