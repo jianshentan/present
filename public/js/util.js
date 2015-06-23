@@ -1,5 +1,5 @@
 function isValidInput( name ) { // username + roomname
-  if( name.length > 1 && name.length <= 15 ) {
+  if( name.length > 1 && name.length <= 18 ) {
     return /^[0-9a-zA-Z_.-]+$/.test( name ); 
   } else {
     return false;

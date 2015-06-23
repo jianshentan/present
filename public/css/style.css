@@ -21,6 +21,7 @@ body {
   padding: 0px;
   margin: 0px;
   min-width: 640px;
+  height: 100vh;
 }
 input:focus{
   outline: 0;
@@ -112,6 +113,10 @@ input[type='text'] {
   background-color: white;
   font-family: "Muli";
 }
+.trending_container > div {
+  width: 277px;
+  display: inline-block;
+}
 .trending_room {
   font-size: 1.6em;
   color: #0376ff;
@@ -119,7 +124,10 @@ input[type='text'] {
   display: inline-block;
   margin: 20px;
 }
-
+.trending_room a {
+  text-decoration: none;
+  color: #0376ff;
+}
 
 /* ENTER */
 .enter_modal {
@@ -181,6 +189,50 @@ input[type='text'] {
   width: 100vw;
   text-align: center;
   margin-bottom: 20px;
+}
+
+/* EXIT */
+.exit_background {
+  display: none;
+  background-color: rgba( 255,255,255,0.9 );
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+}
+.exit_modal {
+  width: 360px;
+  height: 180px;
+  margin: 0 auto;
+  background-color: #0376ff;
+  position: relative;
+  color: white;
+  top: 50%;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 10px;
+}
+.exit_text {
+  font-size: 1.6em;
+  padding-top: 44px;
+}
+.exit_button {
+  font-size: 1.3em;
+  border: 2px solid white;
+  border-radius: 4px;
+  width: 100px; height: 36px;
+  line-height: 36px;
+  text-align: center;
+  margin: 20px auto 0 auto;
+  cursor: pointer;
+}
+.exit_button:hover {
+  color: #0376ff;
+  background-color: white;
 }
 
 /* MAIN */
@@ -356,4 +408,18 @@ header .about a {
 .user .username.offline {
   text-decoration: line-through;
 }
+
+/* INVALID ROOM */
+.invalid_room {
+  font-size: 1.6em;
+  color: #0376ff;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
 

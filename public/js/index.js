@@ -1,10 +1,41 @@
 /* CREATE ROOM */
 
+var app = angular.module( "present", [] );
+var mainController = $( ".main" ).scope();
+
+app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
+
+  $http.get( '/trending?number=10' )
+    .success( function( data ) {
+      var trendingRooms = [];
+      for( var i in data ) {
+        var room = {
+          trending_count: parseInt(i)+1,
+          room_id: data[i]
+        }
+        trendingRooms.push( room );
+      }
+      $scope.trending_rooms = trendingRooms;
+    })
+    .error( function( data ) {
+      console.log( data );
+    });
+  
+}]);
+
+app.directive( 'trendingroom', function() { 
+  return { 
+    restrict: 'E', 
+    scope: {
+      info: '='
+    }, 
+    template: '{{ info.trending_count }}.<a href="/{{ info.room_id }}"> {{ info.room_id }}</a>'
+  }; 
+});
+
+
 $( document ).ready( function() {
   startInput( enter, $( ".create_room_input" ), '/valid/', feedback );
-  $.get( '/trending?number=3', function( data ) {
-    console.log( data );
-  });
 });
 
 function enter( input ) {

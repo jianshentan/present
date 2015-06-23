@@ -19,7 +19,7 @@ module.exports = function( app ) {
         if( bool ) {
           res.render( 'room', { room: roomId } );
         } else {
-          res.render( '404', { room: roomId } );
+          res.render( 'invalid_room', { room: roomId } );
         }
       });
   });

@@ -3,7 +3,7 @@
   <head>
     <link rel='stylesheet' href='/css/style.css' />
   </head>
-  <body>
+  <body ng-app="present" ng-controller="MainController">
   
     <div class="create_room_form">
       <div class="create_room_container">
@@ -21,15 +21,9 @@
     <div class="trending" >
       <div class="trending_label">Trending spaces...</div>
       <div class="trending_container">
-        <div class="trending_room">1. @trendingRoom</div>
-        <div class="trending_room">2. @yellowumbrella</div>
-        <div class="trending_room">3. @foreverland</div>
-        <div class="trending_room">4. @raldk</div>
-        <div class="trending_room">5. @dav</div>
-        <div class="trending_room">6. @whitehouse021</div>
-        <div class="trending_room">7. @nevernerner</div>
-        <div class="trending_room">8. @sotppit</div>
-        <div class="trending_room">9. @trendingRoom</div>
+        <div ng-repeat="room in trending_rooms">
+          <trendingroom class="trending_room" info="room"></trendingroom>
+        </div>
       </div>
     </div>
   

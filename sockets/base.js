@@ -1,6 +1,40 @@
 var async = require( 'async' );
 var redisClient = require( '../db/redis' );
 
+/* ===========================================================
+
+SOCKET Protocol
+
+
+client --> server
+-------------------------------------------------------------
+'join':
+  {
+    room: roomId,
+    user: { 
+      id: roomId+':'+username,
+      username: username
+    }
+  }
+'disconnect': {}
+
+
+server --> client
+-------------------------------------------------------------
+'user joined',
+'user left':
+  { 
+    userlist: [
+      { active: <bool>, username: <string> ...},
+      { active: <bool>, username: <string> ...},
+      ...
+    ],
+    user: { active: <bool>, username: <string> ...}
+  }
+
+=========================================================== */
+
+
 exports.start = function( io ) {
   
   io.on( 'connection', function( socket ) { 
@@ -14,6 +48,11 @@ exports.start = function( io ) {
       socket.join( roomId );
 
       async.parallel([
+        function( callback ) {
+          redisClient.getUserData( userId, function( user ) {
+            callback( null, user );
+          });
+        },
         function( callback ) {
           redisClient.addUserData( userId, data.user.username, roomId, function() {
             callback( null, true );
@@ -31,10 +70,15 @@ exports.start = function( io ) {
         },
 
       ], function( err, results ) {
-        if( !err )
+        if( err ) throw err;
+
+        var user = results[0];
+        if( user ) { 
           redisClient.getUsersInRoom( roomId, function( users ) {
-            io.to( roomId ).emit( 'user joined', users );
+            io.to( roomId ).emit( 'user joined',
+              { userlist: users, user: user } );
           });
+        }
       });
 
       redisClient.totalMinutes( roomId, function( time ) {
@@ -48,15 +92,25 @@ exports.start = function( io ) {
 
       async.parallel([
         function( callback ) {
+          redisClient.getUserData( userId, function( user ) {
+            callback( null, user );
+          });
+        },
+        function( callback ) {
           redisClient.deactivateUser( userId, function() {
             callback( null, true );
           });
         }
       ], function( err, results ) {
-        if( !err )
+        if( err ) throw err;
+
+        var user = results[0];
+        if( user ) {
           redisClient.getUsersInRoom( roomId, function( users ) {
-            io.to( roomId ).emit( 'user left', users );
+            io.to( roomId ).emit( 'user left', 
+              { userlist: users, user: user } );
           });
+        }
       });
     });
   });

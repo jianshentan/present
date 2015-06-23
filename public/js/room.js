@@ -1,5 +1,6 @@
 /* GLOBAL */
 
+var PERSISTENT_USER = true;
 var username = "";
 var roomId = roomId; // roomId is declared in the html
 window.history.pushState("", "", '/'+roomId);
@@ -14,7 +15,31 @@ app.controller('MainController',[ '$scope', function($scope) {
   $scope.active_users = 0;
   $scope.total_users = 0;
 
+  // check if user is already logged in on current browser
+  if( PERSISTENT_USER ) {
+    if( !localStorage.getItem( 'room' ) ) {
+      startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
+    } else {
+      var obj = JSON.parse( localStorage.getItem( 'room' ) );
+      if( obj.room_id !== roomId ) {
+        startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
+      } else {
+        enter( obj.username );
+      }
+    }
+  } else {
+    startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
+  }
+
   $scope.init = function( username ) {
+    if( PERSISTENT_USER ) {
+      var localStorageObj = {
+        room_id: roomId,
+        username: username
+      }
+      localStorage.setItem( 'room', JSON.stringify( localStorageObj ) );
+    }
+
     $scope.username = username;
     $scope.room_id = roomId;
     $scope.$apply();
@@ -101,10 +126,6 @@ function setUsersContainerWidth(){
   $( '.users_container' ).width( maxBoxPerRow * blockWidth );
 };
 
-/* ENTER */
-
-startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
-
 function enter( input ) {
   username = input;
   openConnection();
@@ -155,9 +176,21 @@ function openConnection() {
 } 
 
 socket.on( 'user joined', function( reply ) {
-  $( "body" ).scope().users( reply );
+  $( "body" ).scope().users( reply.userlist );
 });
 
 socket.on( 'user left', function( reply ) {
-  $( "body" ).scope().users( reply );
+  $( "body" ).scope().users( reply.userlist );
+  if( PERSISTENT_USER ) {
+    console.log( reply.user.username );
+    console.log( typeof reply.user.username );
+    console.log( username );
+    console.log( typeof username );
+    if( reply.user.username === username ) {
+      $( '.exit_background' ).fadeIn();
+      $( '.exit_button' ).click( function() {
+        window.location.href = "/";
+      });
+    }
+  }
 });

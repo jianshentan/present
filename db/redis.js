@@ -17,7 +17,7 @@ key              | type      | members    | represents:
 'room<room_id>'  | SET       | <user_id>  | all users in room
 'users'          | SET       | <user_id>  | all users 
 'user<user_id>'  | HASH      | user data  | user data
-'trending'       | SORTEDSET | key: <room_id>, val: active_users 
+'trending'       | SORTEDSET | <room_id>  | sorted by most active users 
 
 * TODO: trending + rooms might be redundant 
 * room_id is the name of the room (they all begin '@')
@@ -103,10 +103,20 @@ exports.deactivateUser = function( userId, callback ) {
 
 exports.getUserData = function( userId, callback ) {
   redisClient.hmget( keyify( 'user', userId ), 
-    'active', 'username', 'joined_on', 'left_on',
+    'active', 'username', 'joined_on', 'left_on', 'room_id',
     function( err, res ) {
       if( err ) throw err;
-      callback( res );
+
+      var user = {
+        active: res[0] == 'true' ? true : false,
+        username: res[1],
+        joined: parseInt( res[2] ),
+        left: parseInt( res[3] ),
+        room_id: res[4]
+      };
+
+      callback( user );
+
     });
 };
 
@@ -123,24 +133,8 @@ exports.getUsersInRoom = function( roomId, callback ) {
         }, 
         function( err, result ) { 
           if( err ) throw err;
-          var users = [];
-          result.forEach( function( reply, i ) {
-            var activeState = false;
-            if( reply[0] == 'true' )
-              activeState = true; 
-            if( reply[0] == 'false' )
-              activeState = false; 
-
-            var user = {
-              active: activeState,
-              username: reply[1],
-              joined: parseInt( reply[2] ),
-              left: parseInt( reply[3] )
-            };
-            users.push( user );
-          });
-          users.sort( compare );
-          callback( users );
+          result.sort( compare );
+          callback( result );
         });
     });
 };
@@ -249,9 +243,9 @@ function keyify( type, specifier ) {
 };
 
 function compare( a, b ) {
-  if (JSON.stringify( a.joined ) < JSON.stringify( b.joined ) )
+  if( JSON.stringify( a.joined ) < JSON.stringify( b.joined ) )
     return -1;
-  if (JSON.stringify( a.joined ) > JSON.stringify( b.joined ) )
+  if( JSON.stringify( a.joined ) > JSON.stringify( b.joined ) )
     return 1;
   return 0;
 }
