@@ -40,7 +40,7 @@ app.directive( 'trendingroom', function() {
 
 
 $( document ).ready( function() {
-  startInput( enter, $( ".create_room_input" ), '/valid/', feedback );
+  startInput( enter, $( ".create_room_input" ), '/valid/', feedback, $( ".create_room_next_icon.success" ) );
 });
 
 function enter( input ) {
@@ -48,6 +48,7 @@ function enter( input ) {
 };
 
 function feedback( option ) {
+  $( ".create_room_next_icon" ).fadeOut( '100' );
   $( ".create_room_text > span" ).fadeOut( '100', function() {
     setTimeout( function() {
       var input = $( ".create_room_input" );
@@ -56,14 +57,17 @@ function feedback( option ) {
       switch( option ) {
         case 'valid':
           $( ".create_room_text > .valid" ).fadeIn( '100' );
+          $( ".create_room_next_icon.success" ).fadeIn( '100' );
           input.addClass( "valid" );
           break;
         case 'invalid':
           $( ".create_room_text > .invalid" ).fadeIn( '100' );
+          $( ".create_room_next_icon.fail" ).fadeIn( '100' );
           input.addClass( "invalid" );
           break;
         case 'taken':
           $( ".create_room_text > .taken" ).fadeIn( '100' );
+          $( ".create_room_next_icon.fail" ).fadeIn( '100' );
           input.addClass( "invalid" );
           break;
         default:

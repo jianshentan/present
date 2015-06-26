@@ -67,6 +67,25 @@
   border: 2px solid #e54823;
   height: 40px;
 }
+.create_room_next_icon {
+  width: 32PX;
+  height: 32px;
+  position: absolute;
+  border-radius: 20px;
+  line-height: 32px;
+  text-align: center;
+  margin-top: -39px;
+  right: 24px;
+  display: none;
+  color: white;
+}
+.create_room_next_icon.success {
+  background-color: #03dd03;
+  cursor: pointer;
+}
+.create_room_next_icon.fail {
+  background-color: #e54823;
+}
 
 /* TRENDING */
 .trending {

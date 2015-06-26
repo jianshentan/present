@@ -17,20 +17,23 @@ app.controller('MainController',[ '$scope', function($scope) {
   $scope.total_users = 0;
 
   // check if user is already logged in on current browser
+  var enterInput = $( ".enter_username" );
+  var enterOnClick = $( ".enter_next_icon.success" );
+  var enterUrl = '/'+roomId+'/';
   if( PERSISTENT_USER ) {
     if( !localStorage.getItem( roomId ) ) {
-      startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
+      startInput( enter, enterInput, enterUrl, feedback, enterOnClick );
     } else {
       var obj = JSON.parse( localStorage.getItem( roomId ) );
       if( obj.room_id !== roomId ) {
-        startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
+        startInput( enter, enterInput, enterUrl, feedback, enterOnClick );
       } else {
         username = obj.username;
         enter( username );
       }
     }
   } else {
-    startInput( enter, $( ".enter_username" ), '/'+roomId+'/', feedback );
+    startInput( enter, enterInput, enterUrl, feedback, enterOnClick );
   }
 
   $scope.init = function( username ) {
@@ -137,6 +140,7 @@ function enter( input ) {
 };
 
 function feedback( option ) {
+  $( ".enter_next_icon" ).fadeOut( '100' );
   $( ".enter_text > span" ).fadeOut( '100', function() {
     setTimeout( function() {
       var input = $( ".enter_username" );
@@ -145,14 +149,17 @@ function feedback( option ) {
       switch( option ) {
         case 'valid':
           $( ".enter_text > .valid" ).fadeIn( '100' );
+          $( ".enter_next_icon.success" ).fadeIn( '100' );
           input.addClass( "valid" );
           break;
         case 'invalid':
           $( ".enter_text > .invalid" ).fadeIn( '100' );
+          $( ".enter_next_icon.fail" ).fadeIn( '100' );
           input.addClass( "invalid" );
           break;
         case 'taken':
           $( ".enter_text > .taken" ).fadeIn( '100' );
+          $( ".enter_next_icon.fail" ).fadeIn( '100' );
           input.addClass( "invalid" );
           break;
         default:
