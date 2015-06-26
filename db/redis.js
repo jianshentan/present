@@ -2,11 +2,11 @@ var async = require( 'async' );
 var redis = require( 'redis' );
 
 /* init redis */
-if(process.env.HEROKU_REDIS_MAROON_URL) {
+if(process.env.REDIS_URL) {
   // HEROKU
   var url = require('url');
 
-  var redisURL = url.parse(process.env.HEROKU_REDIS_MAROON_URL);
+  var redisURL = url.parse(process.env.REDIS_URL);
   var redisClient = redis.createClient(redisURL.port, redisURL.hostname);
   redisClient.auth(redisURL.auth.split(":")[1]);
 } else {
