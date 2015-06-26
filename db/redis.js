@@ -4,9 +4,11 @@ var redis = require( 'redis' );
 /* init redis */
 if(process.env.REDISTOGO_URL ) {
   // HEROKU
-  var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-  var redis = require("redis").createClient(rtg.port, rtg.hostname);
-  redis.auth(rtg.auth.split(":")[1]);
+  var url = require('url');
+
+  var redisURL = url.parse(process.env.REDIS_URL);
+  var redisClient = redis.createClient(redisURL.port, redisURL.hostname);
+  redisClient.auth(redisURL.auth.split(":")[1]);
 } else {
   // LOCAL
   var redisClient = require("redis").createClient(); //can specify ( post, host )
