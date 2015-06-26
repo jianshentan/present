@@ -5,7 +5,7 @@ var mainController = $( ".main" ).scope();
 
 app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
 
-  $http.get( '/trending?number=12' )
+  $http.get( '/trending?number=100' )
     .success( function( data ) {
       if( data.length < 6 ) {
         $( ".trending" ).hide();
