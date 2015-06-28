@@ -27,7 +27,7 @@ module.exports = function( app ) {
 
   app.get( '/valid/:room', function( req, res ) {
     var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
-    redis.isExistingRoom( roomId,
+    redis.isExistingRoom( roomId.toLowerCase(),
       function( bool ) {
         res.send( !bool );
       });
@@ -48,13 +48,11 @@ module.exports = function( app ) {
   });
 
   app.get( '/:room/:username', function( req, res ) {
-    redis.isValidUsername( req.params.username, req.params.room, 
+    redis.isValidUsername( req.params.username.toLowerCase(), req.params.room.toLowerCase(), 
       function( bool ) {
         res.send( bool );
       });
   });
-
-  
 
   /* not using this feature
   app.get( '/time/:room', function( req, res ) {

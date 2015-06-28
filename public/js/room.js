@@ -131,7 +131,7 @@ function setUsersContainerWidth(){
 };
 
 function enter( input ) {
-  username = input;
+  username = input.toLowerCase();
   openConnection( username );
   $( ".enter_modal" ).fadeOut( function() {
     $( ".main" ).fadeIn('fast');

@@ -41,7 +41,7 @@ key              | type      | members    | represents:
 
 exports.addUserData = function( userId, username, roomId, callback ) {
   redisClient.hmset( keyify( 'user', userId ), 
-    'username', username, 
+    'username', username.toLowerCase(), 
     'joined_on', new Date().getTime(),
     'left_on', 'false',
     'active', 'true',
@@ -181,7 +181,7 @@ exports.getUsersInRoom = function( roomId, callback ) {
 };
 
 exports.isValidUsername = function( username, roomId, callback ) {
-  var userId = roomId + ":" + username;
+  var userId = roomId + ":" + username.toLowerCase();
   redisClient.sismember( keyify( 'room', roomId ), userId,
     function( err, res ) {
       if( err ) throw err;
@@ -206,7 +206,7 @@ exports.isExistingUser = function( userId, callback ) {
 };
 
 exports.isExistingRoom = function( roomId, callback ) {
-  redisClient.sismember( 'rooms', roomId,
+  redisClient.sismember( 'rooms', roomId.toLowerCase(),
     function( err, res ) {
       if( err ) throw err;
       if( res == 0 ) { // is not member
