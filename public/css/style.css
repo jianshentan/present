@@ -33,6 +33,12 @@ input[type='text'] {
   padding: 0 5px;
   font-size: 1.6em;
 }
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  body {
+    width: 100vw;
+    min-width: inherit;
+  }
+}
 
 /* INVALID ROOM */
 .invalid_room {

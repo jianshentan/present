@@ -102,6 +102,13 @@
   position: relative;
   height: 85vh;
 }
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .main {
+    height: auto;
+  }
+}
+
+/* HEADER */
 header {
   height: 80px;
   width: 100vw;
@@ -141,15 +148,37 @@ header .about {
   right: 0px;
   display: inline-block;
   position: absolute;
-  height: 50px;
   line-height: 50px;
   margin: 20px;
-}
-header .about a {
-  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #0376ff;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 1.6em;
   color: #0376ff;
+  text-decoration: none;
+}
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  header {
+    min-width: inherit;
+    border-bottom: 1px solid #0376ff;
+  }
+  header .about ,
+  header .user_number {
+    width: 12vw;
+    height: 12vw;
+    line-height: 12vw;
+    font-size: 1.4em;
+    border-radius: 12vw;
+  }
+  header .user_info {
+    margin-top: 1vw !important;
+  }
 }
 
+
+/* CENTER MODAL */
 .center {
   width: 520px;
   height: 420px;
@@ -229,6 +258,49 @@ header .about a {
   font-family: "Muli";
   border-bottom: 2px solid #0376ff;
 }
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .center {
+    width: auto;
+    height: auto;
+    position: relative;
+  }
+  .data_container {
+    padding: 0px;
+  }
+  .data_stats {
+    border-bottom: 1px solid #0376ff;
+    padding-bottom: 24px;
+  }
+  .data_stats .left {
+    display: block;
+    margin-right: 0px;
+    line-height: inherit;
+  }
+  .data_stats .right {
+    font-size: 1.8em;
+  }
+  .data_stats .right > div {
+    display: inline-block;
+  }
+  .share_container {
+    border: none;
+    padding: 0px;
+    padding-bottom: 24px;
+  }
+  .share_project_social {
+    margin: 2vw;
+  }
+  .share_project_social_icon {
+    width: 14vw !important;
+    height: 14vw !important;
+  }
+  .share_project_social_label {
+    display: none;
+  }
+  .share_project_link {
+    font-size: 1.2em;
+  }
+}
 
 /* USER LIST */
 .users {
@@ -269,6 +341,37 @@ header .about a {
 }
 .user .username.offline {
   text-decoration: line-through;
+}
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .users {
+    padding: 0px;
+  }
+  .users_container {
+    width: auto;
+  }
+  .user {
+    margin: 0px;
+    height: auto;
+    padding-left: 7.5vw;
+    padding-right: 7.5vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    width: 85vw;
+    border-bottom: 1px solid #ccc;
+  }
+  .user .user_number {
+    width: 16vw;
+    height: 16vw;
+    line-height: 16vw;
+    border-radius: 16vw;
+    font-size: 1.4em;
+    margin-right: 3vw;
+  }
+  .user .username {
+    font-size: 1.2em;
+  } 
+  .user > .username.offline {
+  }
 }
 
 /* EXIT */
@@ -315,3 +418,15 @@ header .about a {
   background-color: white;
 }
 
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .exit_modal {
+    width: 100vw;
+    height: 50vw;
+    background-color: rgba(0,0,0,0);
+    color: #0376ff;
+  }
+  .exit_button {
+    bordeR: 2px solid #0376ff;
+  }
+
+}
