@@ -1,6 +1,7 @@
 /* INDEX */
 .create_room {
   height: 45vh;
+  padding-bottom: 5vh;
 }
 .create_room.full_page {
   height: 100%;
@@ -104,6 +105,7 @@
   background-color: #0376ff;
   min-height:45vh;
   padding-bottom: 10vh;
+  display: none;
 }
 .trending_label {
   padding-top: 60px;

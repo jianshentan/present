@@ -45,6 +45,8 @@ app.controller('MainController',[ '$scope', function($scope) {
       localStorage.setItem( roomId, JSON.stringify( localStorageObj ) );
     }
 
+    $( ".main" ).fadeIn();
+
     $scope.username = username;
     $scope.room_id = roomId;
     $scope.$apply();

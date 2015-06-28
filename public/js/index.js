@@ -7,10 +7,10 @@ app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
 
   $http.get( '/trending?number=100' )
     .success( function( data ) {
-      if( data.length < 6 ) {
-        $( ".trending" ).hide();
+      if( data.length < 4 ) {
         $( ".create_room" ).addClass( "full_page" );
       } else {
+        $( ".trending" ).show();
         var trendingRooms = [];
         for( var i in data ) {
           var room = {
