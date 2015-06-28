@@ -88,7 +88,15 @@
 }
 
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
-
+  .create_room_form {
+    width: 90vw;
+  }
+  .create_room_text {
+    font-size: 8vw;
+  }
+  .create_room_next_icon {
+    right: 5vw;
+  }
 }
 
 /* TRENDING */
@@ -126,4 +134,13 @@
 .trending_room a {
   text-decoration: none;
   color: #0376ff;
+}
+
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .trending_label {
+    width: 80vw;
+  }
+  .trending_container {
+    width: 80vw;
+  }
 }

@@ -298,7 +298,8 @@ header .about {
     display: none;
   }
   .share_project_link {
-    font-size: 1.2em;
+    font-size: 5vw;
+    margin-top: 0px;
   }
 }
 
