@@ -1,0 +1,27 @@
+<meta name="viewport" content="width=device-width; initial-scale=1.0;">
+<link rel='stylesheet' href='/css/style.css' />
+<link rel='stylesheet' href='/media/font-awesome-4.3.0/css/font-awesome.min.css' />
+
+<link rel="canonical" href="http://www.silent.buzz">
+<meta property="keywords" content="silent buzz silentbuzz online social media social-media socialmedia"> 
+<link rel="icon" href="/media/favicon.ico" type="image/x-icon">
+
+<meta name="description" content="">
+<meta property="og:description" content="">
+
+<% if( typeof room == 'undefined' ) {  %>
+  <title>Silent</title>
+  <meta property="og:title" content="Silent">
+  <meta property="og:url" content="http://www.silent.buzz">
+  <meta property="og:image" content="/media/bitelabs/facebook_banner.png">
+
+<% } else { %>
+  <title>Silent<%= room %></title>
+  <meta property="og:title" content="Silent<%= room %>">
+  <meta property="og:url" content="http://www.silent.buzz/<%= room %>">
+  <meta property="og:image" content="/media/bitelabs/facebook_banner.png">
+<% } %>
+
+<!-- Google Analytics -->
+<script>
+</script>

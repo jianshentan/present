@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
-    <link rel='stylesheet' href='/css/style.css' />
+    <% include head %>
     <link rel='stylesheet' href='/css/index.css' />
-    <link rel='stylesheet' href='/media/font-awesome-4.3.0/css/font-awesome.min.css' />
   </head>
   <body ng-app="present" ng-controller="MainController">
   
@@ -16,6 +14,7 @@
             <span class="valid">It's available!</span>
             <span class="taken">This name has been taken :( </span>
             <span class="invalid">Just letters and numbers please. </span>
+            <span class="too_long">This username is too long.</span>
           </div>
         </div>
         <div class="at_symbol">@</div>

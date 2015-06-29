@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= room %></title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
-    <link rel='stylesheet' href='/css/style.css' />
+    <% include head %>
     <link rel='stylesheet' href='/css/room.css' />
-    <link rel='stylesheet' href='/media/font-awesome-4.3.0/css/font-awesome.min.css' />
   </head>
   <body ng-app="present" ng-controller="MainController">
 
@@ -64,8 +61,9 @@
           <div class="enter_text">
             <span class="default">Enter a username so your friends know who you are</span>
             <span class="valid">Looks good :)</span>
-            <span class="taken">This username has been taken :( Try another one</span>
-            <span class="invalid">The username you entered is invalid</span>
+            <span class="taken">This username has been taken :( </span>
+            <span class="invalid">Just letters and numbers please.</span>
+            <span class="too_long">This username is too long.</span>
           </div>
         </div>
         <input type="text" class="enter_username" placeholder="username"><br>

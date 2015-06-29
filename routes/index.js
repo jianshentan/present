@@ -6,6 +6,10 @@ module.exports = function( app ) {
     res.render( 'index' );
   });
 
+  app.get( '/about', function( req, res ) {
+    res.render( 'about' );
+  });
+
   app.get( '/trending', function( req, res ) {
     redis.getTrendingRooms( req.query.number, function( data ) {
       console.log( data );

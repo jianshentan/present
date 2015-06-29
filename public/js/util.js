@@ -1,9 +1,5 @@
 function isValidInput( name ) { // username + roomname
-  if( name.length > 1 && name.length <= 18 ) {
-    return /^[0-9a-zA-Z_.-]+$/.test( name ); 
-  } else {
-    return false;
-  }
+  return /^[0-9a-zA-Z_.-]+$/.test( name ); 
 };
 
 /* args: callback, input, url, feedback, click */
@@ -34,16 +30,21 @@ function startInput( callback, input, url, feedback, click ) {
       desiredInput= $( this ).val().toLowerCase();
       typingTimer = setTimeout( function() {
         if( isValidInput( desiredInput ) ) {
-          $.get( url+desiredInput, function( valid ) {
-            if( valid ) {
-              inputIsValid = true;
-              feedback( 'valid' );
-              validInput = desiredInput;
-            } else {
-              inputIsValid = false;
-              feedback( 'taken' );
-            }
-          });
+          if( desiredInput.length < 18 ) {
+            $.get( url+desiredInput, function( valid ) {
+              if( valid ) {
+                inputIsValid = true;
+                feedback( 'valid' );
+                validInput = desiredInput;
+              } else {
+                inputIsValid = false;
+                feedback( 'taken' );
+              }
+            });
+          } else {
+            inputIsValid = false;
+            feedback( 'too_long' );
+          }
         } else {
           inputIsValid = false;
           feedback( 'invalid' );

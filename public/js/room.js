@@ -164,6 +164,11 @@ function feedback( option ) {
           $( ".enter_next_icon.fail" ).fadeIn( '100' );
           input.addClass( "invalid" );
           break;
+        case 'too_long':
+          $( ".enter_text > .too_long" ).fadeIn( '100' );
+          $( ".enter_next_icon.fail" ).fadeIn( '100' );
+          input.addClass( "invalid" );
+          break;
         default:
           $( ".enter_text > .default" ).fadeIn( '100' );
           break;

@@ -46,6 +46,7 @@
 }
 .create_room_text .invalid,
 .create_room_text .taken,
+.create_room_text .too_long,
 .create_room_text .valid {
   display: none;
 }

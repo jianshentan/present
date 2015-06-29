@@ -5,7 +5,7 @@ var mainController = $( ".main" ).scope();
 
 app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
 
-  $http.get( '/trending?number=100' )
+  $http.get( '/trending?number=50' )
     .success( function( data ) {
       if( data.length < 4 ) {
         $( ".create_room" ).addClass( "full_page" );
@@ -67,6 +67,11 @@ function feedback( option ) {
           break;
         case 'taken':
           $( ".create_room_text > .taken" ).fadeIn( '100' );
+          $( ".create_room_next_icon.fail" ).fadeIn( '100' );
+          input.addClass( "invalid" );
+          break;
+        case 'too_long':
+          $( ".create_room_text > .too_long" ).fadeIn( '100' );
           $( ".create_room_next_icon.fail" ).fadeIn( '100' );
           input.addClass( "invalid" );
           break;
