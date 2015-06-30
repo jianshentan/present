@@ -52,5 +52,31 @@ input[type='text'] {
   transform: translateY(-50%);
 }
 
+/* FOOTER */
+footer {
+  width: 100vw;
+  height: 120px;
+  line-height: 120px;
+  background-color: white;
+  font-size: 1.2em;
+  font-family: "Muli";
+  color: #555;
+}
+footer .right ,
+footer .right > div ,
+footer .left {
+  display: inline-block;
+}
+footer .left {
+  position: absolute;
+  left: 20px;
+}
+footer .right {
+  position: absolute;
+  right: 20px;
+}
+footer .right > div {
+  margin-right: 20px;
+}
 
 
