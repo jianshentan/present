@@ -107,6 +107,69 @@
   display: inline-block;
   margin-right: 12px;
 }
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .how_container {
+    padding-top: 0px;
+    height: auto;
+  }
+  .how {
+    width: 90vw;
+  }
+  .how_close {
+    position: relative;
+    right: inherit;
+    top: inherit;
+    margin: 3vh auto;
+  }
+  .part_one,
+  .part_two {
+    margin-bottom: 5vh;
+    font-size: 3vh;
+    line-height: 5vh;
+  }
+  .instruction {
+    background-color: rgba(255,255,255,0);
+    color: #555;
+  }
+  .how_diagram {
+    width: inherit;
+    height: inherit;
+    position: relative;
+    bottom: inherit;
+    left: inherit;
+    margin-left: 0px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+  }
+  .how_browser_bar {
+    margin-top: auto;
+    height: 40px;
+    line-height: 40px;
+    padding-top: 70px;
+  }
+  .how_browser_button {
+    display: none;
+  }
+  .how_browser_search {
+    width: 90%;
+    background-color: #0376ff;
+    color: white;
+    border-radius: 0px;
+    margin-left: -45%;
+    margin-top: 0px;
+  }
+  .how_browser_body {
+    width: 90%;
+    height: 40vh;
+    margin: 0 auto;
+    padding: 0px;
+    border: 0px;
+  }
+  .how_browser_item {
+    margin: 2vh 5vw;
+    width: 70vw;
+  }
+}
 
 /* MAIN BANNER */
 .main_banner {
@@ -146,6 +209,30 @@
   font-size: 1.2em;
   margin: 20px;
   cursor: pointer;
+}
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .main_banner {
+    background-size: cover;
+  }
+  .main_banner_text {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-left: auto;
+    width: auto;
+  }
+  .main_banner_text > img {
+    width: 90vw;
+    height: auto;
+    margin-top: 15vh;
+  }
+  .main_banner .title {
+    font-size: 10vw;
+    margin-bottom: 2vw;
+  }
+  .main_banner .tagline {
+    font-size: 5vw;
+  }
 }
 
 /* CREATE ROOM */
@@ -240,6 +327,10 @@
 }
 
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .create_room {
+    height: 40vh;
+    padding: 0px;
+  }
   .create_room_form {
     width: 90vw;
   }
@@ -267,6 +358,16 @@
 .use_case.two { background-color: #ccc; }
 .use_case.three { background-color: #888; }
 .use_case.four { background-color: #555; }
+
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .use_cases {
+    height: auto;
+  }
+  .use_case {
+    display: block;
+    width: 100vw;
+  }
+}
 
 
 /* TRENDING */
@@ -306,12 +407,24 @@
   text-decoration: none;
   color: #0376ff;
 }
-
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+  .trending {
+    padding-bottom: 10vh;
+  }
   .trending_label {
+    padding-top: 8vh;
     width: 80vw;
   }
   .trending_container {
     width: 80vw;
   }
+}
+
+/* FOOTER */
+footer {
+  background-color: white;
+  font-size: 1.2em;
+  font-family: "Muli";
+  color: #555;
+  position: relative;
 }

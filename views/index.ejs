@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include head %>
+    <% include partials/head %>
     <link rel='stylesheet' href='/css/index.css' />
   </head>
   <body ng-app="present" ng-controller="MainController">
@@ -77,16 +77,7 @@
       </div>
     </div>
 
-    <footer>
-      <div class="left">
-        @ Copyright 2015
-      </div>
-      <div class="right">
-        <div class="">Facebook</div>  
-        <div class="">Twitter</div>  
-        <div class="">Email</div>  
-      </div>
-    </footer>
+    <% include partials/footer %>
   
     <script src="/js/jquery-2.1.4.min.js"></script>
     <script src="/js/angular.min.js"></script>

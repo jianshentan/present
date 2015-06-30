@@ -67,12 +67,17 @@ $( document ).ready( function() {
 });
 
 function how() {
+  var fakeUserCount = 16;
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    fakeUserCount = 4;
+  }
+
   $( ".how_container" ).slideToggle( function() {
     how_is_open = (how_is_open == true) ? false : true;
     if( how_is_open ) {
       var count = 0;
       var interval = setInterval( function() {
-        if( count > 16 ) {
+        if( count > fakeUserCount ) {
           stopInterval();
         }
         $( "body" ).scope().addFakeUser(); 
