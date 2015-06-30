@@ -169,7 +169,8 @@
   height: 85vh;
   width: 100vw;
   background-image: url( "../media/banner_bg.png" );
-  background-position: top  center;
+  background-position: top center;
+  background-repeat: repeat-x;
   text-align: center;
   position: relative;
 }
