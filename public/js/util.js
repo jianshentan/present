@@ -3,7 +3,7 @@ function isValidInput( name ) { // username + roomname
 };
 
 /* args: callback, input, url, feedback, click */
-function startInput( callback, input, url, feedback, click ) {
+function startInput( callback, input, url, feedback, success, failure ) {
 
   var typingTimer;                
   var doneTypingInterval = 750;  
@@ -20,10 +20,15 @@ function startInput( callback, input, url, feedback, click ) {
       }
     }
 
-    click.click( function() {
+    success.click( function() {
       if( inputIsValid ) {
         callback( validInput );
       }
+    });
+
+    failure.click( function() {
+      input.val("");       
+      feedback();
     });
 
     if( $( this ).val && $( this ).val().length > 2 ) {

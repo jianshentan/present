@@ -62,10 +62,10 @@
   margin-top: -38px;
   right: 9px;
   display: none;
+  cursor: pointer;
 }
 .enter_next_icon.success {
   background-color: #03dd03;
-  cursor: pointer;
 }
 .enter_next_icon.fail {
   background-color: #e54823;

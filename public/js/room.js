@@ -18,22 +18,23 @@ app.controller('MainController',[ '$scope', function($scope) {
 
   // check if user is already logged in on current browser
   var enterInput = $( ".enter_username" );
-  var enterOnClick = $( ".enter_next_icon.success" );
+  var success = $( ".enter_next_icon.success" );
+  var failure = $( ".enter_next_icon.fail" );
   var enterUrl = '/'+roomId+'/';
   if( PERSISTENT_USER ) {
     if( !localStorage.getItem( roomId ) ) {
-      startInput( enter, enterInput, enterUrl, feedback, enterOnClick );
+      startInput( enter, enterInput, enterUrl, feedback, success, failure );
     } else {
       var obj = JSON.parse( localStorage.getItem( roomId ) );
       if( obj.room_id !== roomId ) {
-        startInput( enter, enterInput, enterUrl, feedback, enterOnClick );
+        startInput( enter, enterInput, enterUrl, feedback, success, failure );
       } else {
         username = obj.username;
         enter( username );
       }
     }
   } else {
-    startInput( enter, enterInput, enterUrl, feedback, enterOnClick );
+    startInput( enter, enterInput, enterUrl, feedback, success, failure);
   }
 
   $scope.init = function( username ) {

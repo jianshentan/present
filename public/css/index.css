@@ -317,10 +317,10 @@
   right: 37px;
   display: none;
   color: white;
+  cursor: pointer;
 }
 .create_room_next_icon.success {
   background-color: #03dd03;
-  cursor: pointer;
 }
 .create_room_next_icon.fail {
   background-color: #e54823;
@@ -381,11 +381,13 @@
   padding-top: 60px;
   font-size: 1.6em;
   color: white;
-  width: 580px;
+  max-width: 820px;
+  width: 80vw;
   margin: 0 auto 12px auto;
 }
 .trending_container {
-  width: 560px;
+  max-width: 832px;
+  width: 80vw;
   margin: 0 auto;
   border-radius: 10px;
   padding: 12px;
@@ -410,6 +412,11 @@
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   .trending {
     padding-bottom: 10vh;
+  }
+  .trending_room {
+    font-size: 6vw;
+    width: auto;
+    margin: 5vw;
   }
   .trending_label {
     padding-top: 8vh;
