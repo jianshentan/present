@@ -1,3 +1,6 @@
+/* GLOBAL */
+var how_is_open = false;
+
 /* CREATE ROOM */
 
 var app = angular.module( "present", [] );
@@ -25,8 +28,28 @@ app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
     .error( function( data ) {
       console.log( data );
     });
+
+  $scope.fake_user_list = [];
+  $scope.fake_user_count = 1;
+  $scope.addFakeUser = function() {
+    var name = "user_"+$scope.fake_user_count;
+    var num = $scope.fake_user_count;
+    $scope.fake_user_list.push( { username: name, count: num } );
+    $scope.fake_user_count += 1;
+    $scope.$apply();
+  }
   
 }]);
+
+app.directive( 'fakeuser', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      info: '=',
+    },
+    template: "<div class='how_browser_item'><div class='how_browser_circle'>{{ info.count }}</div>{{ info.username }}</div>"
+  }
+});
 
 app.directive( 'trendingroom', function() { 
   return { 
@@ -42,6 +65,26 @@ app.directive( 'trendingroom', function() {
 $( document ).ready( function() {
   startInput( enter, $( ".create_room_input" ), '/valid/', feedback, $( ".create_room_next_icon.success" ) );
 });
+
+function how() {
+  $( ".how_container" ).slideToggle( function() {
+    how_is_open = (how_is_open == true) ? false : true;
+    if( how_is_open ) {
+      var count = 0;
+      var interval = setInterval( function() {
+        if( count > 16 ) {
+          stopInterval();
+        }
+        $( "body" ).scope().addFakeUser(); 
+        count++;
+      }, 2000 );
+
+      function stopInterval() {
+        clearInterval( interval );
+      }
+    }
+  });
+}
 
 function enter( input ) {
   window.location.href = "/add/" + input;

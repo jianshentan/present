@@ -6,8 +6,11 @@ module.exports = function( app ) {
     res.render( 'index' );
   });
 
-  app.get( '/about', function( req, res ) {
-    res.render( 'about' );
+  app.get( '/search/:query', function( req, res ) {
+    var query = req.params.query;
+    redis.searchRooms( query, function( rooms ) {
+      res.send( rooms );
+    });
   });
 
   app.get( '/trending', function( req, res ) {

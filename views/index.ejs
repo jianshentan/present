@@ -5,7 +5,44 @@
     <link rel='stylesheet' href='/css/index.css' />
   </head>
   <body ng-app="present" ng-controller="MainController">
-  
+
+    <div class="how_container">
+      <div class="how_close" onclick="how();">
+        <i class="fa fa-times"></i>
+      </div>
+      <div class="how">
+        <div class="part_one">
+          1. <span class="instruction">create an address and generate a unique url:</span> <strong><span class="address">silent.buzz/</span>@your-address</strong>
+        </div>
+        <div class="part_two">
+          2. <span class="instruction">share that url and watch as people enter that address!</span>
+        </div>
+
+        <div class="how_diagram">
+          <div class="how_browser_bar">
+            <div class="how_browser_button"></div>
+            <div class="how_browser_button"></div>
+            <div class="how_browser_search">silent.buzz/@your-address</div>
+          </div>
+          <div class="how_browser_body">
+            <div ng-repeat="user in fake_user_list">
+              <fakeUser info="user"></fakeUser>
+            </div>
+          </div>
+        </div>
+
+      </div> 
+    </div>
+
+    <div class="main_banner">
+      <div class="main_banner_text">
+        <img src="media/banner_image.png"/>
+        <div class="title">Silent. Together.</div>
+        <div class="tagline">Let Your Presence Speak For Itself</div>
+        <input type="button" class="how_it_works" onclick="how();" value="How It Works"/>
+      </div>
+    </div>
+
     <div class="create_room">
       <div class="create_room_form">
         <div class="create_room_container">
@@ -22,6 +59,13 @@
         <div class="create_room_next_icon success"><i class="fa fa-check"></i></div>
         <div class="create_room_next_icon fail"><i class="fa fa-times"></i></div>
       </div>
+    </div>
+
+    <div class="use_cases">
+      <div class="use_case one"></div><!--
+      --><div class="use_case two"></div><!--
+      --><div class="use_case three"></div><!--
+      --><div class="use_case four"></div>
     </div>
 
     <div class="trending" >

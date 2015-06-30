@@ -248,6 +248,21 @@ exports.getTrendingRooms = function( num, callback ) {
     });
 };
 
+exports.searchRooms = function( query, callback ) {
+  redisClient.smembers( 'rooms' ,
+    function( err, res ) {
+      if( err ) throw err;
+      var validRooms = [];
+      for( var index in res ) {
+        var room = res[index];
+        if( room.indexOf( query ) != -1 ){ // contains query
+          validRooms.push( room ); 
+        }
+      }
+      callback( validRooms );
+    });
+};
+
 /* returns total minutes spent in a room collectively
    TODO: untested */
 exports.totalMinutes = function( room, callback ) {
@@ -301,3 +316,4 @@ function compare( a, b ) {
     return 1;
   return 0;
 }
+
