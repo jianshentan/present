@@ -3,7 +3,6 @@
 .enter_modal {
   width: 100vw;
   height: 100vh;
-  background-color: #0376ff;
   margin: 0 auto;
   position: fixed;
   left: 0px;
@@ -115,13 +114,11 @@ header {
   height: 80px;
   width: 100vw;
   min-width: 640px;
-  color: blue;
   position: relative;
 }
 header .user_profile {
   display: inline-block;
   margin: 20px;
-  color: #0376ff;
   position: absolute;
 }
 header .user_number {
@@ -130,7 +127,6 @@ header .user_number {
   line-height: 50px;
   text-align: center;
   border-radius: 30px;
-  border: 2px solid #0376ff;
   font-size: 1.6em;
   margin-right: 12px;
 }
@@ -154,17 +150,14 @@ header .about {
   margin: 20px;
   width: 50px;
   height: 50px;
-  border: 2px solid #0376ff;
   border-radius: 30px;
   text-align: center;
   font-size: 1.6em;
-  color: #0376ff;
   text-decoration: none;
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   header {
     min-width: inherit;
-    border-bottom: 1px solid #0376ff;
   }
   header .about ,
   header .user_number {
@@ -187,9 +180,7 @@ header .about {
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  color: white;
   text-align: center;
-  color: #0376ff;
 }
 .data_container {
   padding-bottom: 24px;
@@ -216,7 +207,6 @@ header .about {
   font-family: "Muli";
 }
 .share_container {
-  border: 2px solid #0376ff;
   padding-bottom: 35px;
   padding-left: 20px;
   padding-right: 20px;
@@ -238,7 +228,6 @@ header .about {
 .share_project_social .share_project_social_icon {
   width: 50px;
   height: 50px;
-  color: #0376ff;;
   background-color: white;
   font-size: 2.2em;
   text-align: center;
@@ -247,7 +236,6 @@ header .about {
 .share_project_social .share_project_social_label {
   font-size: 1.0em;
   margin-top: 12px;
-  color: #0376ff;
   font-family: "Muli";
 }
 .share_project_link {
@@ -258,7 +246,6 @@ header .about {
 }
 .share_project_link_room {
   font-family: "Muli";
-  border-bottom: 2px solid #0376ff;
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   .center {
@@ -270,7 +257,6 @@ header .about {
     padding: 0px;
   }
   .data_stats {
-    border-bottom: 1px solid #0376ff;
     padding-bottom: 24px;
   }
   .data_stats .left {
@@ -307,7 +293,6 @@ header .about {
 
 /* USER LIST */
 .users {
-  background-color: #0376ff;
   color: white;
   padding: 20px;
   display: -webkit-box;
@@ -392,7 +377,6 @@ header .about {
   width: 360px;
   height: 180px;
   margin: 0 auto;
-  background-color: #0376ff;
   position: relative;
   color: white;
   text-align: center;
@@ -417,7 +401,6 @@ header .about {
   cursor: pointer;
 }
 .exit_button:hover {
-  color: #0376ff;
   background-color: white;
 }
 
@@ -426,10 +409,5 @@ header .about {
     width: 100vw;
     height: 50vw;
     background-color: rgba(0,0,0,0);
-    color: #0376ff;
   }
-  .exit_button {
-    bordeR: 2px solid #0376ff;
-  }
-
 }

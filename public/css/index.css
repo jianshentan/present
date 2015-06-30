@@ -8,12 +8,10 @@
 }
 .how_close {
   background-color: white;
-  color: #0376ff;
   width: 50px;
   height: 50px;
   line-height: 50px;
   border-radius: 50px;
-  border: 2px solid #0376ff;
   position: absolute;
   right: 20px;
   top: 20px;
@@ -25,7 +23,6 @@
   width: 960px;
   height: 100%;
   margin: 0 auto;
-  color: #0376ff;;
   position: relative;;
 }
 .part_one,
@@ -34,7 +31,6 @@
   font-size: 1.8em;
 }
 .instruction {
-  background-color: #0376ff;
   color: white;
   padding: 4px;
 }
@@ -42,7 +38,7 @@
   color: #666;
 }
 .how_diagram {
-  background-color: #eee;;
+  background-color: #eee;
   width: 800px;
   height: 300px;
   position: absolute;
@@ -85,7 +81,6 @@
   width: 758px;
   height: 199px;
   background-color: white;
-  border: 1px solid #0376ff;
   padding: 20px;
 }
 .how_browser_body > div {
@@ -100,7 +95,6 @@
 .how_browser_circle {
   height: 40px;
   width: 40px;
-  border: 2px solid #0376ff;
   border-radius: 40px;
   line-height: 40px;
   text-align: center;
@@ -152,7 +146,6 @@
   }
   .how_browser_search {
     width: 90%;
-    background-color: #0376ff;
     color: white;
     border-radius: 0px;
     margin-left: -45%;
@@ -174,7 +167,6 @@
 /* MAIN BANNER */
 .main_banner {
   height: 85vh;
-  background-color: #0376ff;
   width: 100vw;
   background-image: url( "../media/banner_bg.png" );
   background-position: top  center;
@@ -246,7 +238,6 @@
 .create_room_form {
   width: 480px;
   margin: 0 auto;
-  color: #0376ff;
   text-align: center;
   position: relative;
   top: 45%;
@@ -273,7 +264,6 @@
   font-size: 2.0em;
   font-family: "Muli";
   vertical-align: top;
-  background-color: #0376ff;
   color: white;
   border-radius: 4px;
   height: 46px;
@@ -289,7 +279,6 @@
 }
 .create_room_input {
   width: 75%;
-  border: 2px solid #0376ff;
   display: inline-block;
   text-align: center;
   color: #333;
@@ -344,9 +333,7 @@
 
 /* USE CASE */
 .use_cases {
-  height: 120vh;
   width: 100vw;
-  background-color: #0376ff;
 }
 .use_case {
   height: 60vh;
@@ -372,7 +359,6 @@
 
 /* TRENDING */
 .trending {
-  background-color: #0376ff;
   min-height:45vh;
   padding-bottom: 10vh;
   display: none;
@@ -400,14 +386,12 @@
 }
 .trending_room {
   font-size: 1.6em;
-  color: #0376ff;
   width: 237px;
   display: inline-block;
   margin: 20px;
 }
 .trending_room a {
   text-decoration: none;
-  color: #0376ff;
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   .trending {

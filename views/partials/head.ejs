@@ -22,6 +22,70 @@
   <meta property="og:image" content="/media/bitelabs/facebook_banner.png">
 <% } %>
 
+<!-- COLOR  -->
+<style>
+  .enter_modal ,
+  .share_project_social_icon ,
+  .exit_modal,
+  .instruction,
+  .how_browser_search,
+  .main_banner,
+  .at_symbol,
+  .user_cases,
+  .trending,
+  footer,
+  .users {
+    background-color: <%= color %>;
+  }
+
+  .how_close,
+  .how,
+  .create_room_form,
+  .trending_room,
+  .trending_room a,
+  header,
+  .invalid_room,
+  .user_profile,
+  .about,
+  .center,
+  .share_project_social_icon,
+  .share_project_social_label,
+  .exit_button:hover {
+    color: <%= color %>;
+  }
+
+  .about,
+  .user_number,
+  .create_room_input,
+  .how_browser_circle,
+  .how_close,
+  .share_container {
+    border: 2px solid <%= color %>;
+  }
+
+  .how_browser_body {
+    border: 1px solid <%= color %>;
+  }
+
+  .share_project_link_room {
+    border-bottom: 2px solid <%= color %>;
+  }
+
+  @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+    header, 
+    .data_stats {
+      border-bottom: 1px solid <%= color %>;
+    }
+    .exit_modal {
+      color: <%= color %>;
+    } 
+    .exit_button {
+      border: 2px solid <%= color %>;
+    }
+  }
+
+</style>
+
 <!-- Google Analytics -->
 <script>
 </script>

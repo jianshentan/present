@@ -3,7 +3,7 @@ var redis = require( "../db/redis" );
 module.exports = function( app ) {
 
   app.get( '/', function( req, res ) {
-    res.render( 'index' );
+    res.render( 'index', { color: randomColor() } );
   });
 
   app.get( '/search/:query', function( req, res ) {
@@ -25,9 +25,9 @@ module.exports = function( app ) {
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
-          res.render( 'room', { room: roomId } );
+          res.render( 'room', { room: roomId, color: randomColor() } );
         } else {
-          res.render( 'invalid_room', { room: roomId } );
+          res.render( 'invalid_room', { room: roomId, color: randomColor() } );
         }
       });
   });
@@ -45,10 +45,10 @@ module.exports = function( app ) {
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
-          res.render( 'index', { room: 'invalid room'} );
+          res.render( 'index', { room: 'invalid room', color: randomColor()  } );
         } else {
           redis.addRoom( roomId, function() {
-            res.render( 'room', { room: roomId } );
+            res.render( 'room', { room: roomId, color: randomColor() } );
           });
         }
       });
@@ -73,3 +73,9 @@ module.exports = function( app ) {
   */
 
 };
+
+function randomColor() {
+  var colors = ["#0068FF", "#05CA50", "#F2E85C", "#F53D54", "#FF7CAB", "#F28713", "#9640FF", "#9CD100" ];
+  var random = Math.floor( Math.random() * (colors.length - 0)) + 0; 
+  return colors[random];
+}
