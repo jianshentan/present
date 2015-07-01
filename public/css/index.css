@@ -337,16 +337,38 @@
   width: 100vw;
 }
 .use_case {
-  height: 60vh;
+  height: 38vw;
   width: 50vw;
   display: inline-block;
   vertical-align: top;
+  background-size: cover;
+  position: relative;
+  text-align: center;
 }
-.use_case.one { background-color: #AAA; }
-.use_case.two { background-color: #ccc; }
-.use_case.three { background-color: #888; }
-.use_case.four { background-color: #555; }
+.use_case > img {
+  height: 30vw;
+  width: 30vw;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.use_case.one{ background-image: url("../media/uswnt_bg.png"); }
+.use_case.two { background-image: url("../media/meditation_bg.png"); }
+.use_case.three{ background-image: url("../media/bernie_bg.png"); }
+.use_case.four { background-image: url("../media/takeitdown_bg.png"); }
 
+@media  (min-width : 480px ) and (max-width: 920px ) {
+  .use_case {
+    height: 74vw;
+    width: 100vw;
+  }
+  .use_case > img {
+    height: 65vw;
+    width: 65vw;
+  }
+}
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   .use_cases {
     height: auto;
@@ -368,13 +390,11 @@
   padding-top: 60px;
   font-size: 1.6em;
   color: white;
-  max-width: 820px;
-  width: 80vw;
+  width: 832px;
   margin: 0 auto 12px auto;
 }
 .trending_container {
-  max-width: 832px;
-  width: 80vw;
+  width: 832px;
   margin: 0 auto;
   border-radius: 10px;
   padding: 12px;
@@ -393,6 +413,14 @@
 }
 .trending_room a {
   text-decoration: none;
+}
+@media  (min-width : 480px ) and (max-width: 920px ) {
+  .trending_label {
+    width: 560px;
+  }
+  .trending_container {
+    width: 560px;
+  }
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   .trending {
