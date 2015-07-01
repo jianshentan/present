@@ -368,9 +368,19 @@
   width: 237px;
   display: inline-block;
   margin: 20px;
+  vertical-align: top;
+}
+.trending_room .num {
+  width: 15%;
+  display: inline-block;
+  vertical-align: top;
 }
 .trending_room a {
   text-decoration: none;
+  width: 85%;
+  display: inline-block;
+  word-wrap: break-word;
+  vertical-align: top;
 }
 @media  (min-width : 480px ) and (max-width: 920px ) {
   .trending_label {

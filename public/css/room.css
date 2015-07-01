@@ -246,6 +246,7 @@ header .about {
 }
 .share_project_link_room {
   font-family: "Muli";
+  word-wrap: break-word;
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   .center {
