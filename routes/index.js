@@ -6,6 +6,10 @@ module.exports = function( app ) {
     res.render( 'index', { color: randomColor() } );
   });
 
+  app.get( '/about', function( req, res ) {
+    res.render( 'about', { color: randomColor() } );
+  });
+
   app.get( '/search/:query', function( req, res ) {
     var query = req.params.query;
     redis.searchRooms( query, function( rooms ) {

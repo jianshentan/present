@@ -1,0 +1,53 @@
+/* LEARN MORE */
+.learn_more {
+  max-width: 960px;
+  width: 80vw;
+  margin: 80px auto;
+}
+.title {
+  font-size: 3.0em;
+  font-family: "Muli";
+}
+.question {
+  font-size: 1.6em;
+  font-family: "Muli";
+  color: #333;
+  margin-bottom: 20px;
+}
+.answer {
+  font-size: 1.4em;
+  color: #333;
+}
+@media (min-width: 480px ) and (max-width: 920px ) {
+  .learn_more {
+    width: 80vw;
+  }
+}
+
+
+/* USE CASE */
+.use_cases {
+  margin: 20px auto;
+}
+.use_cases img {
+  vertical-align: top;
+  width: 32vw;
+  margin-bottom: 20px;
+  margin-right: 40px;
+  box-shadow: 3px 3px 9px #bbb;
+}
+@media (min-width: 480px ) and (max-width: 920px ) {
+  .use_cases img {
+    width: 60vw;
+    margin-bottom: 5vw;
+  }
+}
+@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+}
+
+/* FOOTER */
+footer {
+  font-size: 1.2em;
+  font-family: "Muli";
+  position: relative;
+}
