@@ -69,9 +69,12 @@ footer {
   bottom: 0px;
 }
 footer .right ,
-footer .right > div ,
+footer .left div ,
+footer .right div ,
 footer .left {
   display: inline-block;
+  text-decoration: none;
+  color: white;
 }
 footer .left {
   position: absolute;
@@ -81,7 +84,7 @@ footer .right {
   position: absolute;
   right: 20px;
 }
-footer .right > div {
+footer .right  div {
   margin-right: 20px;
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {

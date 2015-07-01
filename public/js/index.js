@@ -66,7 +66,7 @@ $( document ).ready( function() {
   startInput( enter, $( ".create_room_input" ), '/valid/', feedback, $( ".create_room_next_icon.success" ), $( ".create_room_next_icon.fail" ) );
 });
 
-var fakeUserCount = 16;
+var fakeUserCount = 13;
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
   fakeUserCount = 4;
 }
@@ -85,6 +85,7 @@ function how() {
       }, 2000 );
 
       function stopInterval() {
+        console.log();
         clearInterval( interval );
       }
     }

@@ -3,7 +3,7 @@
   height: 72vh;
   width: 100vw;
   display: none;
-  padding-top: 60px;
+  padding-top: 90px;
   position: relative;
 }
 .how_close {
@@ -30,6 +30,10 @@
   margin-bottom: 60px;
   font-size: 1.8em;
 }
+.part_two a {
+  color: #555;
+  font-family: "Muli";
+}
 .instruction {
   color: white;
   padding: 4px;
@@ -38,6 +42,7 @@
   color: #666;
 }
 .how_diagram {
+  overflow: hidden;
   background-color: #eee;
   width: 800px;
   height: 300px;
@@ -121,6 +126,7 @@
     font-size: 3vh;
     line-height: 5vh;
   }
+  
   .instruction {
     background-color: rgba(255,255,255,0);
     color: #555;
@@ -397,6 +403,9 @@ footer {
   background-color: white;
   font-size: 1.2em;
   font-family: "Muli";
-  color: #555;
   position: relative;
+}
+footer .left div,
+footer .right div {
+  color: #555;
 }

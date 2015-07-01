@@ -4,9 +4,13 @@
   width: 80vw;
   margin: 80px auto;
 }
+.learn_more > a {
+  font-size: 1.2em;
+}
 .title {
   font-size: 3.0em;
   font-family: "Muli";
+  margin-top: 20px;
 }
 .question {
   font-size: 1.6em;
