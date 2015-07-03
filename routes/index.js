@@ -22,6 +22,16 @@ module.exports = function( app ) {
       redis.getTrendingRooms( req.query.number, function( data ) {
         res.send( data );
       });
+    } else {
+      var roomId = "@trending";
+      redis.isExistingRoom( roomId, 
+        function( bool ) {
+          if( bool ) {
+            res.render( 'room', { room: roomId, color: randomColor() } );
+          } else {
+            res.render( 'invalid_room', { room: roomId, color: randomColor() } );
+          }
+        });
     }
   });
 
