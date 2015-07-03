@@ -18,7 +18,7 @@ module.exports = function( app ) {
   });
 
   app.get( '/trending', function( req, res ) {
-    if( isEmpty( req.query ) ) {
+    if( !isEmpty( req.query ) ) {
       redis.getTrendingRooms( req.query.number, function( data ) {
         res.send( data );
       });
