@@ -22,7 +22,7 @@
 .how {
   width: 960px;
   height: 80vh;
-  max-height: 470px;
+  max-height: 540px;
   margin: 0 auto;
   position: relative;;
 }
@@ -144,8 +144,8 @@
   .part_one,
   .part_two {
     margin-bottom: 5vh;
-    font-size: 3vh;
-    line-height: 5vh;
+    font-size: 2vh;
+    line-height: 3vh;
   }
   
   .instruction {
@@ -246,11 +246,15 @@
     left: auto;
     margin-left: auto;
     width: auto;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   .main_banner_text > img {
     width: 90vw;
     height: auto;
-    margin-top: 15vh;
   }
   .main_banner .title {
     font-size: 10vw;
