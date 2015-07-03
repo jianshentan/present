@@ -32,6 +32,7 @@ server.on('listening', onListening);
 var io = require('socket.io').listen(server);
 require('../sockets/base').start(io);
 
+require('newrelic');
 /**
  * Normalize a port into a number, string, or false.
  */
