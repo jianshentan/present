@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 
+require('newrelic');
 var app = require('../app');
 var debug = require('debug')('present:server');
 var http = require('http');
@@ -32,7 +33,6 @@ server.on('listening', onListening);
 var io = require('socket.io').listen(server);
 require('../sockets/base').start(io);
 
-require('newrelic');
 /**
  * Normalize a port into a number, string, or false.
  */
