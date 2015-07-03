@@ -3,6 +3,7 @@
   width: 100vw;
   display: none;
   padding-top: 90px;
+  max-height: 600px;
   position: relative;
 }
 .how_close {
@@ -21,6 +22,7 @@
 .how {
   width: 960px;
   height: 80vh;
+  max-height: 470px;
   margin: 0 auto;
   position: relative;;
 }
@@ -193,6 +195,7 @@
 .main_banner {
   height: 85vh;
   width: 100vw;
+  max-height: 560px;
   background-image: url( "../media/banner_bg.png" );
   background-position: top center;
   background-repeat: repeat-x;
@@ -261,6 +264,7 @@
 /* CREATE ROOM */
 .create_room {
   height: 35vh;
+  max-height: 300px;
   padding-bottom: 5vh;
 }
 .create_room.full_page {
