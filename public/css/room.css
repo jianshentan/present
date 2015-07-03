@@ -289,6 +289,8 @@ header .about {
   .share_project_link {
     font-size: 5vw;
     margin-top: 0px;
+    padding-left: 2vw;
+    padding-right: 2vw;
   }
 }
 

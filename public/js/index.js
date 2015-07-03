@@ -1,5 +1,6 @@
 /* GLOBAL */
 var how_is_open = false;
+var fake_user_names = [ "denise_li",  "avalencia", "js_tan", "lbentel", "ross_g", "sira_happy", "linus_boy", "crazyjkang", "wilradin", "josands", "hannahchoi", "hkaye", "zsalinger", "eliz", "mattso", "h_li", "kevin_saxon", "tony" ]
 
 /* CREATE ROOM */
 
@@ -32,7 +33,7 @@ app.controller('MainController',[ '$scope', '$http', function( $scope, $http ) {
   $scope.fake_user_list = [];
   $scope.fake_user_count = 1;
   $scope.addFakeUser = function() {
-    var name = "user_"+$scope.fake_user_count;
+    var name = fake_user_names[$scope.fake_user_count];
     var num = $scope.fake_user_count;
     $scope.fake_user_list.push( { username: name, count: num } );
     $scope.fake_user_count += 1;

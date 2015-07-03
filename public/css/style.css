@@ -33,7 +33,7 @@ input[type='text'] {
   padding: 0 5px;
   font-size: 1.6em;
 }
-@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+@media (min-width : 320px ) and (max-width: 480px ) {
   body {
     width: 100vw;
     min-width: inherit;
@@ -50,7 +50,7 @@ input[type='text'] {
   -ms-transform: translateY(-40%);
   transform: translateY(-40%);
 }
-@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+@media (min-width : 320px ) and (max-width: 480px ) {
   .invalid_room {
     width: 80vw;
     margin: 0 auto;
@@ -87,7 +87,7 @@ footer .right {
 footer .right  div {
   margin-right: 20px;
 }
-@media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
+@media (min-width : 320px ) and (max-width: 480px ) {
   footer {
     text-align: center;
     height: auto;
