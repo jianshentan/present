@@ -18,10 +18,11 @@ module.exports = function( app ) {
   });
 
   app.get( '/trending', function( req, res ) {
-    redis.getTrendingRooms( req.query.number, function( data ) {
-      console.log( data );
-      res.send( data );
-    });
+    if( isEmpty( req.query ) ) {
+      redis.getTrendingRooms( req.query.number, function( data ) {
+        res.send( data );
+      });
+    }
   });
 
   app.get( '/:room', function( req, res ) {
@@ -82,4 +83,12 @@ function randomColor() {
   var colors = ["#0068FF", "#05CA50", "#FAD100", "#F53D54", "#FF7CAB", "#F28713", "#9640FF", "#9CD100" ];
   var random = Math.floor( Math.random() * (colors.length - 0)) + 0; 
   return colors[random];
+}
+
+function isEmpty(obj) {
+  for(var prop in obj) {
+    if(obj.hasOwnProperty(prop))
+      return false;
+  }
+  return true;
 }
