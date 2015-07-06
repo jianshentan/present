@@ -6,20 +6,29 @@
 <meta property="keywords" content="silent buzz silentbuzz online social media social-media socialmedia"> 
 <link rel="icon" href="/media/favicon.ico" type="image/x-icon">
 
-<meta name="description" content="">
-<meta property="og:description" content="">
+<meta property="og:image" content="/media/fb_banner.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@silent_buzz">
+<meta name="twitter:creator" content="@silent_buzz">
+<meta name="twitter:image" content="/media/fb_banner.png">
 
 <% if( typeof room == 'undefined' ) {  %>
   <title>Silent</title>
+  <meta name="description" content="Let Your Presence Speak For Itself">
   <meta property="og:title" content="Silent">
   <meta property="og:url" content="http://www.silent.buzz">
-  <meta property="og:image" content="/media/bitelabs/facebook_banner.png">
-
+  <meta property="og:description" content="Let Your Presence Speak For Itself">
+  <meta name="twitter:title" content="Silent">
+  <meta name="twitter:description" content="Let Your Presence Speak For Itself">
 <% } else { %>
   <title>Silent<%= room %></title>
+  <meta name="description" content="Join <%= room %> on Silent. Let Your Presence Speak For Itself">
   <meta property="og:title" content="Silent<%= room %>">
   <meta property="og:url" content="http://www.silent.buzz/<%= room %>">
-  <meta property="og:image" content="/media/bitelabs/facebook_banner.png">
+  <meta property="og:description" content="Join <%= room %> on Silent. Let Your Presence Speak For Itself">
+  <meta name="twitter:title" content="Silent">
+  <meta name="twitter:description" content="Join <%= room %> on Silent. Let Your Presence Speak For Itself">
 <% } %>
 
 <!-- COLOR  -->

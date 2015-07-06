@@ -41,7 +41,7 @@ function startInput( callback, input, url, feedback, success, failure ) {
       feedback();
     });
 
-    if( $( this ).val && $( this ).val().length > 2 ) {
+    if( $( this ).val && $( this ).val().length > 1 ) {
       desiredInput= $( this ).val().toLowerCase();
       typingTimer = setTimeout( function() {
         if( isValidInput( desiredInput ) ) {
