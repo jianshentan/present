@@ -6,7 +6,7 @@ function isValidInput( name ) { // username + roomname
 function startInput( callback, input, url, feedback, success, failure ) {
 
   var typingTimer;                
-  var doneTypingInterval = 750;  
+  var doneTypingInterval = 400;  
   var inputIsValid = false;
   var validInput = '';
 
@@ -18,6 +18,8 @@ function startInput( callback, input, url, feedback, success, failure ) {
       if( inputIsValid ) {
         callback( validInput );
       }
+    } else {
+      inputIsValid = false;
     }
 
     success.click( function() {

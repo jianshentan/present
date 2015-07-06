@@ -98,37 +98,37 @@ function enter( input ) {
 };
 
 function feedback( option ) {
-  $( ".create_room_next_icon" ).fadeOut( '100' );
-  $( ".create_room_text > span" ).fadeOut( '100', function() {
+  $( ".create_room_next_icon" ).fadeOut( 50 );
+  $( ".create_room_text > span" ).fadeOut( 50, function() {
     setTimeout( function() {
       var input = $( ".create_room_input" );
       input.removeClass( "valid" );
       input.removeClass( "invalid" );
       switch( option ) {
         case 'valid':
-          $( ".create_room_text > .valid" ).fadeIn( '100' );
-          $( ".create_room_next_icon.success" ).fadeIn( '100' );
+          $( ".create_room_text > .valid" ).fadeIn( 50 );
+          $( ".create_room_next_icon.success" ).fadeIn( 50 );
           input.addClass( "valid" );
           break;
         case 'invalid':
-          $( ".create_room_text > .invalid" ).fadeIn( '100' );
-          $( ".create_room_next_icon.fail" ).fadeIn( '100' );
+          $( ".create_room_text > .invalid" ).fadeIn( 50 );
+          $( ".create_room_next_icon.fail" ).fadeIn( 50 );
           input.addClass( "invalid" );
           break;
         case 'taken':
-          $( ".create_room_text > .taken" ).fadeIn( '100' );
-          $( ".create_room_next_icon.fail" ).fadeIn( '100' );
+          $( ".create_room_text > .taken" ).fadeIn( 50 );
+          $( ".create_room_next_icon.fail" ).fadeIn( 50 );
           input.addClass( "invalid" );
           break;
         case 'too_long':
-          $( ".create_room_text > .too_long" ).fadeIn( '100' );
-          $( ".create_room_next_icon.fail" ).fadeIn( '100' );
+          $( ".create_room_text > .too_long" ).fadeIn( 50 );
+          $( ".create_room_next_icon.fail" ).fadeIn( 50 );
           input.addClass( "invalid" );
           break;
         default:
-          $( ".create_room_text > .default" ).fadeIn( '100' );
+          $( ".create_room_text > .default" ).fadeIn( 50 );
           break;
       }
-    }, 500 );
+    }, 200 );
   });
 };

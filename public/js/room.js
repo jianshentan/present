@@ -143,38 +143,38 @@ function enter( input ) {
 };
 
 function feedback( option ) {
-  $( ".enter_next_icon" ).fadeOut( '100' );
-  $( ".enter_text > span" ).fadeOut( '100', function() {
+  $( ".enter_next_icon" ).fadeOut( 50 );
+  $( ".enter_text > span" ).fadeOut( 50, function() {
     setTimeout( function() {
       var input = $( ".enter_username" );
       input.removeClass( "valid" );
       input.removeClass( "invalid" );
       switch( option ) {
         case 'valid':
-          $( ".enter_text > .valid" ).fadeIn( '100' );
-          $( ".enter_next_icon.success" ).fadeIn( '100' );
+          $( ".enter_text > .valid" ).fadeIn( 50 );
+          $( ".enter_next_icon.success" ).fadeIn( 50 );
           input.addClass( "valid" );
           break;
         case 'invalid':
-          $( ".enter_text > .invalid" ).fadeIn( '100' );
-          $( ".enter_next_icon.fail" ).fadeIn( '100' );
+          $( ".enter_text > .invalid" ).fadeIn( 50 );
+          $( ".enter_next_icon.fail" ).fadeIn( 50 );
           input.addClass( "invalid" );
           break;
         case 'taken':
-          $( ".enter_text > .taken" ).fadeIn( '100' );
-          $( ".enter_next_icon.fail" ).fadeIn( '100' );
+          $( ".enter_text > .taken" ).fadeIn( 50 );
+          $( ".enter_next_icon.fail" ).fadeIn( 50 );
           input.addClass( "invalid" );
           break;
         case 'too_long':
-          $( ".enter_text > .too_long" ).fadeIn( '100' );
-          $( ".enter_next_icon.fail" ).fadeIn( '100' );
+          $( ".enter_text > .too_long" ).fadeIn( 50 );
+          $( ".enter_next_icon.fail" ).fadeIn( 50 );
           input.addClass( "invalid" );
           break;
         default:
-          $( ".enter_text > .default" ).fadeIn( '100' );
+          $( ".enter_text > .default" ).fadeIn( 50 );
           break;
       }
-    }, 500 );
+    }, 200 );
   });
 };
 
