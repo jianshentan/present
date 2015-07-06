@@ -328,10 +328,19 @@ header .about {
   background-color: rgba(255,255,255,0.5);
   color: white;
 }
-.user .username {
+.user .username_container {
   display: inline-block;
   width: 108px;
+  height: 44px;
+  position: absolute;;
+}
+.user .username {
   word-wrap: break-word;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .user .username.offline {
   text-decoration: line-through;
@@ -360,6 +369,9 @@ header .about {
     border-radius: 16vw;
     font-size: 1.4em;
     margin-right: 3vw;
+  }
+  .user .username_container {
+    height:16vw;
   }
   .user .username {
     font-size: 1.2em;

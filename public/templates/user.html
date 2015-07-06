@@ -1,9 +1,9 @@
 <div ng-show="info.active" title="active"> 
   <div class="user_number present">{{ info.user_count }}</div>
-  <div class="username">{{ info.username }}</div>
+  <div class="username_container"><div class="username">{{ info.username }}</div></div>
 </div>
 
 <div ng-show="!info.active" title="offline">
   <div class="user_number offline">{{ info.user_count }}</div>
-  <div class="username offline">{{ info.username }}</div>
+  <div class="username_container offline"><div class="username">{{ info.username }}</div></div>
 </div>
