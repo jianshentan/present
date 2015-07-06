@@ -10,6 +10,14 @@ function startInput( callback, input, url, feedback, success, failure ) {
   var inputIsValid = false;
   var validInput = '';
 
+  // replace 'space' key with 'underscore'
+  input.keydown( function( e ) {
+    if( e.keyCode == 32 || e.which == 32 || e.keypress == 32 ) {
+      e.preventDefault();
+      $( this ).val( $( this ).val() + '_' );
+    }
+  });
+
   //on keyup, start the countdown
   input.keyup( function( e ){
     clearTimeout( typingTimer );
