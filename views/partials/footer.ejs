@@ -5,6 +5,10 @@
     <a href="mailto:hi.silentbuzz@gmail.com" target="_blank"><div class="">Email</div></a>
   </div>
   <div class="left">
+    <% if( page_url == "/about" ) {%>
+    <a href="/"><div class="">Home</div></a>
+    <% } else { %>
     <a href="/about"><div class="">Learn More</div></a>
+    <% } %>
   </div>
 </footer>

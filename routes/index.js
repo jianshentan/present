@@ -3,11 +3,17 @@ var redis = require( "../db/redis" );
 module.exports = function( app ) {
 
   app.get( '/', function( req, res ) {
-    res.render( 'index', { color: randomColor() } );
+    res.render( 'index', {
+      page_url: req.url, 
+      color: randomColor() 
+    });
   });
 
   app.get( '/about', function( req, res ) {
-    res.render( 'about', { color: randomColor() } );
+    res.render( 'about', { 
+      page_url: req.url,
+      color: randomColor() 
+    });
   });
 
   app.get( '/search/:query', function( req, res ) {
@@ -27,9 +33,17 @@ module.exports = function( app ) {
       redis.isExistingRoom( roomId, 
         function( bool ) {
           if( bool ) {
-            res.render( 'room', { room: roomId, color: randomColor() } );
+            res.render( 'room', { 
+              page_url: req.url,
+              room: roomId, 
+              color: randomColor() 
+            });
           } else {
-            res.render( 'invalid_room', { room: roomId, color: randomColor() } );
+            res.render( 'invalid_room', { 
+              page_url: req.url,
+              room: roomId, 
+              color: randomColor() 
+            });
           }
         });
     }
@@ -40,9 +54,17 @@ module.exports = function( app ) {
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
-          res.render( 'room', { room: roomId, color: randomColor() } );
+          res.render( 'room', { 
+            page_url: req.url,
+            room: roomId, 
+            color: randomColor() 
+          });
         } else {
-          res.render( 'invalid_room', { room: roomId, color: randomColor() } );
+          res.render( 'invalid_room', { 
+            page_url: req.url,
+            room: roomId, 
+            color: randomColor() 
+          });
         }
       });
   });
@@ -60,10 +82,18 @@ module.exports = function( app ) {
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
-          res.render( 'index', { room: 'invalid room', color: randomColor()  } );
+          res.render( 'index', { 
+            page_url: req.url,
+            room: 'invalid room', 
+            color: randomColor()  
+          });
         } else {
           redis.addRoom( roomId, function() {
-            res.render( 'room', { room: roomId, color: randomColor() } );
+            res.render( 'room', { 
+              page_url: req.url,
+              room: roomId, 
+              color: randomColor() 
+            });
           });
         }
       });
