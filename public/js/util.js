@@ -12,7 +12,7 @@ function startInput( callback, input, url, feedback, success, failure ) {
 
   // replace 'space' key with 'underscore'
   input.keydown( function( e ) {
-    if( e.keyCode == 32 || e.which == 32 || e.keypress == 32 ) {
+    if( e.keyCode == 32 || e.which == 32 ) {
       e.preventDefault();
       $( this ).val( $( this ).val() + '_' );
     }
@@ -68,3 +68,24 @@ function startInput( callback, input, url, feedback, success, failure ) {
     }
   });
 };
+
+// Notification plugin
+var TabNotification = {
+  Vars: {
+    OriginalTitle: document.title,
+    Interval: null
+  },    
+  On: function( notification, intervalSpeed ){
+    var _this = this;
+    _this.Vars.Interval = setInterval( function(){
+      document.title = ( _this.Vars.OriginalTitle == document.title )
+                       ? notification
+                       : _this.Vars.OriginalTitle;
+    }, ( intervalSpeed ) ? intervalSpeed : 1000 );
+  },
+  Off: function() {
+    clearInterval( this.Vars.Interval );
+    document.title = this.Vars.OriginalTitle;   
+  }
+}
+

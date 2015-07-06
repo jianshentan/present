@@ -5,6 +5,7 @@ var username = "";
 var roomId = roomId; // roomId is declared in the html
 var totalSeconds = 0;
 window.history.pushState("", "", '/'+roomId);
+var newUserCount = 0;
 
 /* MAIN */
 
@@ -190,10 +191,29 @@ function openConnection( username ) {
   socket.emit( 'join', { user: user, room: roomId } );
 } 
 
-socket.on( 'user joined', function( reply ) {
+// when you log on, retreive users 
+socket.on( 'joined', function( reply ) {
   $( "body" ).scope().users( reply.userlist );
 });
 
+// when other people on log, get new users
+socket.on( 'user joined', function( reply ) {
+  $( "body" ).scope().users( reply.userlist );
+
+  newUserCount++;
+  TabNotification.Off();
+  TabNotification.On( "(" + newUserCount + ") User Joined " + roomId );
+  setTimeout( function() {
+    TabNotification.Off();
+  }, 6000 );
+  $( window ).one( 'focus', function() {
+    TabNotification.Off();
+    newUserCount = 0;
+  });
+  
+});
+
+// when other people leave
 socket.on( 'user left', function( reply ) {
   $( "body" ).scope().users( reply.userlist );
   if( PERSISTENT_USER ) {
@@ -206,3 +226,4 @@ socket.on( 'user left', function( reply ) {
     }
   }
 });
+

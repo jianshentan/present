@@ -73,7 +73,7 @@ exports.start = function( io ) {
           var user = results[0];
           if( user ) {
             redisClient.getUsersInRoom( roomId, function( users ) {
-              io.to( roomId ).emit( 'user joined',
+              io.to( roomId ).emit( 'joined',
                 { userlist: users, user: user } );
             });
           }
