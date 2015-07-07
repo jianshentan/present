@@ -47,6 +47,7 @@ exports.addUserData = function( clientIp, userId, username, roomId, callback ) {
     'username', username.toLowerCase(), 
     'ip', clientIp,
     'active', 'true',
+    'joined', new Date().getTime(),
     'room_id', roomId,
     function( err, res ) {
       if( err ) throw err;
