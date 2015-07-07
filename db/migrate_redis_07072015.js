@@ -18,6 +18,8 @@ redisClient.on( 'connect', function() {
   console.log( "migrate: redis db connected" );
 });
 
+/* ---------- 1 ----------- */
+
 /* update room keys */
 function updateRoomKeys( callback ) {
   redisClient.keys( "room<*>", function( err, res ) {
@@ -79,6 +81,7 @@ function updateUserKeys( callback ) {
   });
 };
 
+/*
 async.parallel([
   function( cb ) {
     updateRoomKeys( function() { 
@@ -94,5 +97,34 @@ async.parallel([
   }
 ], function( err, results ) {
   if( err ) throw err;
+  process.exit();
+});
+*/
+
+/* ----------- 2 ----------- */
+
+/* update users attr joined to set time */
+function updateUserJoined( callback ) {
+  redisClient.keys( "user:@*:", function( err, res ) {
+    if( err ) throw err;
+
+    async.map( res,
+      function( key, cb ) {
+        var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
+        redisClient.hset( key, "joined", yesterday, function( err, res1 ) {
+          if( err ) throw err;
+          cb( null, true );
+        });
+
+      },
+      function( err, results ) {
+        if( err ) throw err;
+        callback();
+      });
+  });
+};
+
+updateUserJoined( function() {
+  console.log( "updated user joined date" );
   process.exit();
 });
