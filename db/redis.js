@@ -33,6 +33,7 @@ key                    | type      | members    | represents:
 'user:<user_id>:entry' | LIST      | <dates>    | list of enter-datetimes 
 'user:<user_id>:exit'  | LIST      | <dates>    | list of exit-datetimes 
 'trending'             | SORTEDSET | <room_id>  | sorted by most active users 
+'active'               | SET       | <user_id>  | all active users
 
 * TODO: trending & rooms might be redundant 
 * room_id is the name of the room (they all begin '@')
@@ -91,6 +92,11 @@ exports.logUserEnter = function( userId, callback ) {
       if( err ) throw err;
       callback();
     });
+
+  redisClient.sadd( 'active', userId,
+    function( err, res ) {
+      if( err ) throw err;
+    });
 };
 
 exports.logUserExit = function( userId, callback ) {
@@ -98,6 +104,11 @@ exports.logUserExit = function( userId, callback ) {
     function( err, res ) {
       if( err ) throw err;
       callback();
+    });
+
+  redisClient.srem( 'active', userId,
+    function( err, res ) {
+      if( err ) throw err;
     });
 };
 
@@ -138,7 +149,6 @@ exports.activateUser = function( userId, callback ) {
     function( cb ) {
       redisClient.hmset( 'user:'+userId,
         'active', 'true',
-        'left_on', 'false',
         function( err, res ) {
           if( err ) throw err;
           cb( null, true );
@@ -167,7 +177,6 @@ exports.deactivateUser = function( userId, callback ) {
     function( cb ) {
       redisClient.hmset( 'user:'+userId, 
         'active', 'false',
-        'left_on', new Date().getTime(),
         function( err, res ) {
           if( err ) throw err;
           cb( null, true );
@@ -194,15 +203,13 @@ exports.deactivateUser = function( userId, callback ) {
 
 exports.getUserData = function( userId, callback ) {
   redisClient.hmget( 'user:'+userId,
-    'active', 'username', 'joined_on', 'left_on', 'room_id',
+    'active', 'username', 'room_id',
     function( err, res ) {
       if( err ) throw err;
 
       var user = {
         active: res[0] == 'true' ? true : false,
         username: res[1],
-        joined: parseInt( res[2] ),
-        left: parseInt( res[3] ),
         room_id: res[4]
       };
 
@@ -302,7 +309,7 @@ exports.totalMinutes = function( room, callback ) {
       async.map( res,
         function( userId, cb ) {
           redisClient.hmget( 'user:'+userId, 
-            'active', 'joined_on', 'left_on',
+            'active', 
             function( err, res1 ) {
               if( err ) throw err;
               console.log( res1 );
