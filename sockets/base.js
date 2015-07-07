@@ -41,7 +41,7 @@ exports.start = function( io ) {
   io.on( 'connection', function( socket ) { 
     var userId = null;
     var roomId = null;
-    var clientIp = socket.request.connection.remoteAddress
+    var clientIp = socket.request.connection.remoteAddress;
 
     socket.on( 'join', function( data ) {
       userId = data.user.id;

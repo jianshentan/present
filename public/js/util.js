@@ -16,6 +16,14 @@ function startInput( callback, input, url, feedback, success, failure ) {
       e.preventDefault();
       $( this ).val( $( this ).val() + '_' );
     }
+
+    if( $( this ).val().length >= 50 ) {
+      if( e.keyCode !== 8 && e.which !== 8 ) {
+        e.preventDefault();
+        $( this ).val( $( this ).val() );
+        feedback( 'too_long' );
+      }
+    } 
   });
 
   //on keyup, start the countdown
@@ -45,7 +53,7 @@ function startInput( callback, input, url, feedback, success, failure ) {
       desiredInput= $( this ).val().toLowerCase();
       typingTimer = setTimeout( function() {
         if( isValidInput( desiredInput ) ) {
-          if( desiredInput.length < 50 ) {
+          if( desiredInput.length <= 50 ) {
             $.get( url+desiredInput, function( valid ) {
               if( valid ) {
                 inputIsValid = true;
