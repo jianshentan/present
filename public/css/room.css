@@ -87,6 +87,13 @@
   .enter_text {
     font-size: 6vw;
   }
+  .enter_username {
+    width: 70vw;
+    border-right: 12vw solid #ccc !important;
+  }
+  .enter_next_icon {
+    right: 2vw;
+  }
 }
 
 
