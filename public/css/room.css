@@ -42,7 +42,7 @@
   color: #333;
   border-radius: 4px;
   -webkit-border-radius:4px;
-  border-right: 40px solid #ccc !important;
+  padding-right: 40px !important;
 }
 .enter_next_icon {
   width: 32PX;
@@ -89,7 +89,7 @@
   }
   .enter_username {
     width: 70vw;
-    border-right: 12vw solid #ccc !important;
+    padding-right: 12vw !important;
   }
   .enter_next_icon {
     right: 2vw;
