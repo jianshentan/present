@@ -17,7 +17,6 @@ if(process.env.REDIS_URL) {
 redisClient.on( 'connect', function() {
   console.log( "redis db connected" );
 });
-// redisClient.flushall(); // dev only
 
 /* ===========================================================
 
