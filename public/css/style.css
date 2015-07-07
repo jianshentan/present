@@ -30,7 +30,7 @@ input[type='text'] {
   height: 42px;
   line-height: 42px;
   font: 14px "Muli", Helvetica, Arial, sans-serif;
-  padding: 0 5px;
+  padding: 0 0 0 5px;
   font-size: 1.6em;
 }
 @media (min-width : 320px ) and (max-width: 480px ) {

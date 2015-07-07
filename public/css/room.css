@@ -36,20 +36,13 @@
   display: none;
 }
 .enter_username {
-  width: 95%;
+  width: 85%;
   border: 0 solid #fff;
   text-align: center;
   color: #333;
   border-radius: 4px;
   -webkit-border-radius:4px;
-}
-.enter_username.valid {
-  height: 40px;
-  border: 2px solid #03dd03;
-}
-.enter_username.invalid {
-  border: 2px solid #e54823;
-  height: 40px;
+  border-right: 40px solid #ccc !important;
 }
 .enter_next_icon {
   width: 32PX;
@@ -159,6 +152,11 @@ header .about {
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   header {
     min-width: inherit;
+    height: 22vw;
+  }
+  header .user_profile ,
+  header .about {
+    margin: 5vw;
   }
   header .about ,
   header .user_number {

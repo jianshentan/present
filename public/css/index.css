@@ -316,6 +316,7 @@
   display: none;
 }
 .create_room_input {
+  padding-right: 40px !important;
   width: 75%;
   display: inline-block;
   text-align: center;
@@ -341,7 +342,7 @@
   line-height: 32px;
   text-align: center;
   margin-top: -39px;
-  right: 37px;
+  right: 17px;
   display: none;
   color: white;
   cursor: pointer;
@@ -366,7 +367,10 @@
     font-size: 8vw;
   }
   .create_room_next_icon {
-    right: 5vw;
+    right: 5%;
+  }
+  .create_room_input {
+    width: 65%;
   }
 }
 
