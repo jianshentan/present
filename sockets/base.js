@@ -41,6 +41,7 @@ exports.start = function( io ) {
   io.on( 'connection', function( socket ) { 
     var userId = null;
     var roomId = null;
+    var clientIp = socket.request.connection.remoteAddress
 
     socket.on( 'join', function( data ) {
       userId = data.user.id;
@@ -67,6 +68,11 @@ exports.start = function( io ) {
             redisClient.activateUser( userId, function() {
               callback( null, true );  
             });
+          },
+          function( callback ) {
+            redisClient.logUserEnter( userId, function() {
+              callback( null, true );  
+            });
           }
         ], function( err, results ) {
           if( err ) throw err;
@@ -85,7 +91,7 @@ exports.start = function( io ) {
       function addNewUser( userId, roomId, data ) {
         async.parallel([
           function( callback ) {
-            redisClient.addUserData( userId, data.user.username, roomId,
+            redisClient.addUserData( clientIp, userId, data.user.username, roomId,
               function() {
                 callback( null, true );
               });
@@ -100,7 +106,11 @@ exports.start = function( io ) {
               callback( null, true );
             });
           },
-
+          function( callback ) {
+            redisClient.logUserEnter( userId, function() {
+              callback( null, true );  
+            });
+          }
         ], function( err, results ) {
           if( err ) throw err;
 
@@ -133,6 +143,11 @@ exports.start = function( io ) {
         function( callback ) {
           redisClient.deactivateUser( userId, function() {
             callback( null, true );
+          });
+        },
+        function( callback ) {
+          redisClient.logUserExit( userId, function() {
+            callback( null, true );  
           });
         }
       ], function( err, results ) {

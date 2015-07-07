@@ -79,6 +79,7 @@ module.exports = function( app ) {
 
   app.get( '/add/:room', function( req, res ) {
     var roomId = req.params.room[0] == "@" ? req.params.room : "@" + req.params.room;
+    var roomIp = req.ip;
     redis.isExistingRoom( roomId, 
       function( bool ) {
         if( bool ) {
@@ -88,7 +89,7 @@ module.exports = function( app ) {
             color: randomColor()  
           });
         } else {
-          redis.addRoom( roomId, function() {
+          redis.addRoom( roomId, roomIp, function() {
             res.render( 'room', { 
               page_url: req.url,
               room: roomId, 
