@@ -21,6 +21,7 @@ client --> server
 
 server --> client
 -------------------------------------------------------------
+'joined',
 'user joined',
 'user left':
   { 

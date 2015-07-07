@@ -23,18 +23,20 @@ redisClient.on( 'connect', function() {
 
 REDIS client structure
 
-key              | type      | members    | represents:
+key                    | type      | members    | represents:
 --------------------------------------------------------------
-'rooms'          | SET       | <room_id>  | all room
-'room<room_id>'  | SET       | <user_id>  | all users in room
-'users'          | SET       | <user_id>  | all users 
-'user<user_id>'  | HASH      | user data  | user data
-'trending'       | SORTEDSET | <room_id>  | sorted by most active users 
+'rooms'                | SET       | <room_id>  | all room
+'room:<room_id>'       | HASH      | room data  | room data
+'room:<room_id>:users' | SET       | <user_id>  | all users in room
+'users'                | SET       | <user_id>  | all users 
+'user:<user_id>'       | HASH      | user data  | user data
+'user:<user_id>:log'   | LIST      | <dates>    | list of enters and leave datetimes 
+'trending'             | SORTEDSET | <room_id>  | sorted by most active users 
 
-* TODO: trending + rooms might be redundant 
+* TODO: trending & rooms might be redundant 
 * room_id is the name of the room (they all begin '@')
 * user_id = <roomId>:<username>
-* rooms and room<room_id> are sets because their members must
+* rooms and room:<room_id>:users are sets because their members must
   be unique
 
 =========================================================== */
