@@ -210,7 +210,7 @@ exports.getUserData = function( userId, callback ) {
       var user = {
         active: res[0] == 'true' ? true : false,
         username: res[1],
-        room_id: res[4]
+        room_id: res[2]
       };
 
       callback( user );
