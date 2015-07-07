@@ -203,14 +203,15 @@ exports.deactivateUser = function( userId, callback ) {
 
 exports.getUserData = function( userId, callback ) {
   redisClient.hmget( 'user:'+userId,
-    'active', 'username', 'room_id',
+    'active', 'username', 'room_id', 'joined',
     function( err, res ) {
       if( err ) throw err;
 
       var user = {
         active: res[0] == 'true' ? true : false,
         username: res[1],
-        room_id: res[2]
+        room_id: res[2],
+        joined: res[3]
       };
 
       callback( user );
