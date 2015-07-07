@@ -33,7 +33,7 @@ key                    | type      | members    | represents:
 'user:<user_id>:entry' | LIST      | <dates>    | list of enter-datetimes 
 'user:<user_id>:exit'  | LIST      | <dates>    | list of exit-datetimes 
 'trending'             | SORTEDSET | <room_id>  | sorted by most active users 
-'active'               | SET       | <user_id>  | all active users
+'active'               | SORTEDSET | <user_id>  | all active users sorted by date
 
 * TODO: trending & rooms might be redundant 
 * room_id is the name of the room (they all begin '@')
@@ -93,7 +93,7 @@ exports.logUserEnter = function( userId, callback ) {
       callback();
     });
 
-  redisClient.sadd( 'active', userId,
+  redisClient.zadd( 'active', new Date().getTime(), userId,
     function( err, res ) {
       if( err ) throw err;
     });
@@ -106,7 +106,7 @@ exports.logUserExit = function( userId, callback ) {
       callback();
     });
 
-  redisClient.srem( 'active', userId,
+  redisClient.zrem( 'active', userId,
     function( err, res ) {
       if( err ) throw err;
     });
