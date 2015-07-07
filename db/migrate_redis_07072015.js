@@ -105,12 +105,12 @@ async.parallel([
 
 /* update users attr joined to set time */
 function updateUserJoined( callback ) {
-  redisClient.keys( "user:@*:", function( err, res ) {
+  redisClient.keys( "user:@*:*", function( err, res ) {
     if( err ) throw err;
 
     async.map( res,
       function( key, cb ) {
-        var yesterday = (function(d){ d.setDate(d.getDate()-1); return d})(new Date);
+        var yesterday = (function(d){ d.setDate(d.getDate()-1); return d.getTime();})(new Date);
         redisClient.hset( key, "joined", yesterday, function( err, res1 ) {
           if( err ) throw err;
           cb( null, true );
