@@ -172,13 +172,17 @@ function deleteEmptyTrendingRooms( callback ) {
 
     async.map( res,
       function( room, cb ) {
-        if( room.slice( -2 ) == "mt" || room.slice( -2 ) == "__" ) {
+        if( room.length > 3 ) {
           cb( null, true );
         } else {
-          redisClient.zrem( "trending", room, function( err, res1 ) {
-            if( err ) throw err;
-            cb();
-          });
+          if( room.slice( -2 ) == "mt" || room.slice( -2 ) == "__" ) {
+            cb( null, true );
+          } else {
+            redisClient.zrem( "trending", room, function( err, res1 ) {
+              if( err ) throw err;
+              cb( null, true );
+            });
+          }
         }
       },
       function( err, results ) {
