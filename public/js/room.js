@@ -19,7 +19,7 @@ app.controller('MainController',[ '$scope', function($scope) {
 
   // check if user is already logged in on current browser
   var enterInput = $( ".enter_username" );
-  var success = $( ".enter_next_icon.success" );
+  var success = $( ".enter_next_icon.success, .enter_mobile_button" );
   var failure = $( ".enter_next_icon.fail" );
   var enterUrl = '/'+roomId+'/';
   if( PERSISTENT_USER ) {
@@ -145,6 +145,7 @@ function enter( input ) {
 
 function feedback( option ) {
   $( ".enter_next_icon" ).fadeOut( 50 );
+  $( ".enter_mobile_button" ).fadeOut( 50 );
   $( ".enter_text > span" ).fadeOut( 50, function() {
     setTimeout( function() {
       var input = $( ".enter_username" );
@@ -154,6 +155,7 @@ function feedback( option ) {
         case 'valid':
           $( ".enter_text > .valid" ).fadeIn( 50 );
           $( ".enter_next_icon.success" ).fadeIn( 50 );
+          $( ".enter_mobile_button" ).fadeIn( 50 );
           input.addClass( "valid" );
           break;
         case 'invalid':
