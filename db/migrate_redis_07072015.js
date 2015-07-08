@@ -124,7 +124,39 @@ function updateUserJoined( callback ) {
   });
 };
 
+/*
 updateUserJoined( function() {
   console.log( "updated user joined date" );
+  process.exit();
+});
+*/
+
+/* ----------- 3 ----------- */
+
+/* delete all rooms with no users */
+function deleteEmptyRooms( callback ) {
+  redisClient.keys( "room:@??", function( err, res ) {
+    if( err ) throw err;
+    
+    async.map( res,
+      function( key, cb ) {
+        if( key.slice( -2 ) == "mt" || key.slice( -2 ) == "__" ) {
+            cb( null, true );
+        } else {
+          redisClient.del( key, function( err, res1 ) {
+            if( err )  throw err;
+            cb( null, true );
+          });
+        }
+      },
+      function( err, results ) {
+        if( err ) throw err;
+        callback();
+      });
+  });
+};
+
+deleteEmptyRooms( function() {
+  console.log( "deleted empty rooms" );
   process.exit();
 });
