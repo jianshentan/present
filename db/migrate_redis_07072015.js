@@ -156,7 +156,39 @@ function deleteEmptyRooms( callback ) {
   });
 };
 
+/* 
 deleteEmptyRooms( function() {
   console.log( "deleted empty rooms" );
+  process.exit();
+});
+*/
+
+/* ----------- 4 ----------- */
+
+/* delete all rooms with no users in trending */
+function deleteEmptyTrendingRooms( callback ) {
+  redisClient.zrange( "trending", "0", "-1", function( err, res ) {
+    if( err ) throw err;
+
+    async.map( res,
+      function( room, cb ) {
+        if( room.slice( -2 ) == "mt" || room.slice( -2 ) == "__" ) {
+          cb( null, true );
+        } else {
+          redisClient.zrem( "trending", room, function( err, res1 ) {
+            if( err ) throw err;
+            cb();
+          });
+        }
+      },
+      function( err, results ) {
+        if( err ) throw err;
+        callback();
+      });
+
+  });
+};
+deleteEmptyRooms( function() {
+  console.log( "deleted empty trending rooms" );
   process.exit();
 });
