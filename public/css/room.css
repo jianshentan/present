@@ -71,13 +71,13 @@
   left: 50%;
   bottom: 0px;
   padding: 8px;
-  margin-left: -64px;
+  margin-left: -68px;
   border: 2px solid white;
   border-radius: 4px;
   margin-bottom: 20px;
 }
 .enter_mobile_button {
-  display: none !important;
+  display: none;
 }
 @media (min-device-width : 320px ) and (max-device-width: 480px ) {
   .enter_form {
@@ -85,19 +85,17 @@
     height: 50vw;
   }
   .enter_mobile_button {
-    position: absolute;
     color: white;
     font-size: 1.2em;
-    position: absolute;
     text-align: center;
     width: 120px;
     left: 50%;
     top: 20px;
     padding: 8px;
-    margin-left: -64px;
+    margin-left: -68px;
     border: 2px solid white;
     border-radius: 4px;
-    margin-bottom: 20px; 
+    margin: 20px auto;
   }
   .enter_text_container {
     height: 24vw;

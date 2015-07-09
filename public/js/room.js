@@ -19,7 +19,12 @@ app.controller('MainController',[ '$scope', function($scope) {
 
   // check if user is already logged in on current browser
   var enterInput = $( ".enter_username" );
-  var success = $( ".enter_next_icon.success, .enter_mobile_button" );
+  if( isMobile() ) {
+    var success = $( ".enter_next_icon.success, .enter_mobile_button" );
+  } else {
+    var success = $( ".enter_next_icon.success" );
+    $( ".enter_mobile_button" ).remove();
+  }
   var failure = $( ".enter_next_icon.fail" );
   var enterUrl = '/'+roomId+'/';
   if( PERSISTENT_USER ) {

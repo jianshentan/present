@@ -68,7 +68,7 @@ $( document ).ready( function() {
 });
 
 var fakeUserCount = 13;
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+if( isMobile() ) {
   fakeUserCount = 4;
 }
 
