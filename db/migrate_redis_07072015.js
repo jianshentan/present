@@ -165,8 +165,6 @@ deleteEmptyRooms( function() {
 
 /* ----------- 4 ----------- */
 
-// TODO: did not work
-
 /* delete all rooms with no users in trending */
 function deleteEmptyTrendingRooms( callback ) {
   redisClient.zrange( "trending", "0", "-1", function( err, res ) {

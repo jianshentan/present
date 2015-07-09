@@ -94,6 +94,7 @@ footer .right  div {
     line-height: inherit;
     padding-top: 4vh;
     padding-bottom: 4vh;
+    font-size: 4vw !important;
   }
   footer .right,
   footer .left {
@@ -101,6 +102,9 @@ footer .right  div {
     left: auto;
     right: auto;
     margin: 3vh auto;
+  }
+  footer .right a > div {
+    margin: auto 7vw;
   }
 }
 
