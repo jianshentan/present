@@ -163,14 +163,16 @@ header .about {
   right: 0px;
   display: inline-block;
   position: absolute;
-  line-height: 50px;
-  margin: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 30px;
+  line-height: 40px;
+  margin: 25px 20px;
+  width: 70px;
+  height: 40px;
+  border-radius: 4px;
   text-align: center;
-  font-size: 1.6em;
+  font-size: 1.2em;
   text-decoration: none;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 @media only screen and (min-device-width : 320px ) and (max-device-width: 480px ) {
   header {
@@ -183,11 +185,18 @@ header .about {
   }
   header .about ,
   header .user_number {
-    width: 12vw;
     height: 12vw;
     line-height: 12vw;
+  }
+  header .user_number {
+    border-radius: 14vw;
+    width: 12vw;
     font-size: 1.4em;
-    border-radius: 12vw;
+  }
+  header .about {
+    border-radius: 4px;
+    width: 16vw;
+    font-size: 4vw;
   }
   header .user_info {
     margin-top: 1vw !important;
@@ -395,6 +404,7 @@ header .about {
     height:16vw;
   }
   .user .username {
+    width: 62vw;
     font-size: 1.2em;
   } 
   .user > .username.offline {
