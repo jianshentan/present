@@ -58,7 +58,7 @@ app.directive( 'trendingroom', function() {
     scope: {
       info: '='
     }, 
-    template: '<div class="num">{{ info.trending_count }}.</div><a href="/{{ info.room_id }}"> {{ info.room_id }}</a>'
+    template: '<div class="num">{{ info.trending_count }}.</div><a href="/{{ info.room_id }}" title="{{ info.room_id }}"> {{ info.room_id }}</a>'
   }; 
 });
 
