@@ -80,8 +80,12 @@ exports.start = function( io ) {
           var user = results[0];
           if( user ) {
             redisClient.getUsersInRoom( roomId, function( users ) {
-              io.to( roomId ).emit( 'joined',
+              // sending to all clients in <roomId> channel except sender
+              socket.broadcast.to( roomId ).emit( 'user joined',
                 { userlist: users, user: user } );
+
+              // send to current request socket client
+              socket.emit( 'joined',{ userlist: users, user: user } );
             });
           }
           
@@ -116,8 +120,12 @@ exports.start = function( io ) {
 
           redisClient.getUserData( userId, function( user ) {
             redisClient.getUsersInRoom( roomId, function( users ) {
-              io.to( roomId ).emit( 'user joined',
+              // sending to all clients in <roomId> channel except sender
+              socket.broadcast.to( roomId ).emit( 'user joined',
                 { userlist: users, user: user } );
+
+              // send to current request socket client
+              socket.emit( 'joined',{ userlist: users, user: user } );
             });
           });
         });

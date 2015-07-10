@@ -161,7 +161,7 @@ function feedback( option ) {
         case 'valid':
           $( ".enter_text > .valid" ).fadeIn( 50 );
           $( ".enter_next_icon.success" ).fadeIn( 50 );
-          $( ".enter_mobile_button" ).fadeIn( 50 );
+          if( isMobile() ) $( ".enter_mobile_button" ).fadeIn( 50 );
           input.addClass( "valid" );
           break;
         case 'invalid':

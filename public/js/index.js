@@ -64,7 +64,13 @@ app.directive( 'trendingroom', function() {
 
 
 $( document ).ready( function() {
-  startInput( enter, $( ".create_room_input" ), '/valid/', feedback, $( ".create_room_next_icon.success" ), $( ".create_room_next_icon.fail" ) );
+  var success;
+  if( isMobile() ) {
+    success = $( ".create_room_next_icon.success, .create_room_mobile_button" );
+  } else { 
+    success = $( ".create_room_next_icon.success" );
+  }
+  startInput( enter, $( ".create_room_input" ), '/valid/', feedback, success, $( ".create_room_next_icon.fail" ) );
 });
 
 var fakeUserCount = 13;
@@ -99,6 +105,7 @@ function enter( input ) {
 
 function feedback( option ) {
   $( ".create_room_next_icon" ).fadeOut( 50 );
+  $( ".create_room_mobile_button" ).fadeOut( 50 );
   $( ".create_room_text > span" ).fadeOut( 50, function() {
     setTimeout( function() {
       var input = $( ".create_room_input" );
@@ -107,6 +114,7 @@ function feedback( option ) {
       switch( option ) {
         case 'valid':
           $( ".create_room_text > .valid" ).fadeIn( 50 );
+          if( isMobile() ) $( ".create_room_mobile_button" ).fadeIn( 50 );
           $( ".create_room_next_icon.success" ).fadeIn( 50 );
           input.addClass( "valid" );
           break;
