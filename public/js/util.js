@@ -106,4 +106,3 @@ function isMobile() {
     return false;
   }
 }
-

@@ -193,6 +193,10 @@ header .about {
     width: 12vw;
     font-size: 1.4em;
   }
+  header .username {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   header .about {
     border-radius: 4px;
     width: 16vw;
@@ -200,6 +204,7 @@ header .about {
   }
   header .user_info {
     margin-top: 1vw !important;
+    width: 45vw;
   }
 }
 

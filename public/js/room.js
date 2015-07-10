@@ -55,6 +55,7 @@ app.controller('MainController',[ '$scope', function($scope) {
     $( ".main" ).fadeIn();
 
     $scope.username = username;
+    $scope.username_display = username;
     $scope.room_id = roomId;
     $scope.$apply();
 
